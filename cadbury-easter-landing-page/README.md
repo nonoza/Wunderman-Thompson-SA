@@ -26,7 +26,7 @@
 ### Links
 
 - Solution URL: [Link to Soulution](https://www.frontendmentor.io/solutions/qr-code-component-using-sass-D1pxDunfH-)
-- Live Site URL: [Link to Live](https://nonoza.github.io/qr-code-component-main/)
+- Live Site URL: [Link to Live](https://nonoza.github.io/Wunderman-Thompson-SA/cadbury-easter-landing-page//)
 
 ## My process
 - Started with the HTML to build a structure of the page.
