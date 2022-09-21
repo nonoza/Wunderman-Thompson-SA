@@ -25,7 +25,7 @@
 
 ### Links
 
-- Solution URL: [Link to Soulution](https://www.frontendmentor.io/solutions/qr-code-component-using-sass-D1pxDunfH-)
+- Solution URL: [Link to Soulution](https://github.com/nonoza/Wunderman-Thompson-SA/tree/main/cadbury-easter-landing-page)
 - Live Site URL: [Link to Live](https://nonoza.github.io/Wunderman-Thompson-SA/cadbury-easter-landing-page//)
 
 ## My process
