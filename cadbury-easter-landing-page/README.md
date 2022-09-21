@@ -17,9 +17,7 @@
 
 
 ### Screenshot
-Deskop
 ![](./images/desktop.PNG)
-Mobile
 ![](./images/mobile.PNG)
 
 
