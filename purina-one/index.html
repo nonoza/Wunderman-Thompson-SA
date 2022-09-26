@@ -1,0 +1,137 @@
+<html>
+
+<head>
+    <title>pop up 2</title>
+
+    <style type="text/css">
+        /*Style for the whole popup*/
+        div#popup1 {
+            animation: right_to_left 3s ease;
+        }
+
+        div.content {
+
+            animation-duration: 15s;
+            animation-name: bounceIn;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.1);
+                opacity: 0;
+            }
+
+            60% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes right_to_left {
+            from {
+                margin-left: 100%;
+            }
+
+            to {
+                margin-left: 0;
+            }
+
+        }
+
+        div#popup1 {
+            background: #f5f1e5;
+            width: 28%;
+            border-style: solid;
+            border-color: red;
+            border-width: 6px;
+        }
+
+        a.close {
+            position: absolute;
+            left: 25%;
+            bottom: 89%;
+            max-width: 219px;
+            color: #000;
+        }
+
+
+        .popup h2 {
+            color: #000;
+            text-decoration: none;
+            font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+            font-size: 20px;
+            text-align: center;
+            position: relative;
+            top: 34px;
+        }
+
+        .content {
+            color: #000;
+            text-decoration: none;
+            font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+            font-size: 20px;
+            text-align: center;
+            position: relative;
+            top: -64px;
+            font-weight: 600;
+
+        }
+
+        span.cta-button.icon {
+            background: url(images/icon.png) no-repeat scroll center center / 100% auto rgba(0, 0, 0, 0);
+
+            display: inline-block;
+            color: #fff;
+            height: 30px;
+            position: relative;
+            top: 218px;
+            vertical-align: middle;
+            width: 36px;
+            position: absolute;
+            left: 91px;
+        }
+
+        .cta-button a {
+            color: #fff;
+            text-decoration: none;
+            font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+            font-size: 23px;
+            background: red;
+            border-style: solid;
+            border-color: #000;
+            border-radius: 10px;
+            font-weight: 600;
+            padding: 4px 22px 5px 16px;
+            position: relative;
+            top: -37px;
+            left: 122px;
+        }
+
+        .popup img {
+            width: 303px;
+            position: relative;
+            left: 22px;
+            bottom: 35px;
+        }
+    </style>
+    <div id="popup1" class="overlay">
+        <div class="popup">
+            <img src="images\logo1.png">
+            <div class="content">
+                Rejoignez le Club Chiot de<br> Purina pour tout savoir sur<br> l'éducation de votre chiot !
+            </div>
+
+            <div class="cta-button">
+
+                <a href="https://www.purina.fr/inscription">JE M’INSCRIS </a>
+
+            </div>
+        </div>
+    </div>
+    </body>
+
+</html>
