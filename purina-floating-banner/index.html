@@ -1,0 +1,142 @@
+<html>
+
+<head>
+    <title>Banner</title>
+    <style>
+        /*css for animation*/
+        /*animate the banner*/
+        .register-banner,
+        .red-banner,
+        .cta-button a {
+            animation: left_to_right 3s ease;
+        }
+
+        @keyframes left_to_right {
+            from {
+                margin-left: -100%;
+            }
+
+            to {
+                margin-left: 0;
+            }
+
+        }
+
+
+        div .logo {
+
+            animation-duration: 10s;
+            animation-name: fadeIn;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                transform: scale(0.1);
+                opacity: 0;
+            }
+
+            60% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+
+
+        /*end of animation of the banner*/
+        /*End of css */
+        .red-banner {
+            width: 100%;
+            background: red;
+            padding: 19px;
+            border-style: solid;
+            border-color: #000;
+            height: 16px;
+            position: relative;
+            top: 12px;
+
+        }
+
+
+        .text {
+            color: #fff;
+            font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+            font-size: 11px;
+            float: left;
+            margin-left: 260px;
+            font-size: 13px;
+            margin-top: -7px;
+        }
+
+        .cta-button {
+            float: right;
+            margin-right: 32px;
+            margin-top: -5px;
+        }
+
+        .cta-button a {
+            color: #fff;
+            text-decoration: none;
+            font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+            font-size: 16px;
+            background: #a53535;
+            border-style: solid;
+            border-color: #fff;
+            border-radius: 10px;
+            font-weight: 600;
+            padding: 4px 50px 6px 10px;
+        }
+
+        .logo {
+            background: #f5f1e5;
+            width: 200px;
+            height: 91px;
+            position: absolute;
+            top: -21px;
+            left: 43px;
+            border-style: solid;
+            border-color: red;
+            border-width: 6px;
+        }
+
+        .logo img {
+            position: relative;
+            left: 15px;
+            top: 22px;
+            animation-delay: -4s;
+
+        }
+
+        .cta-button img {
+            width: 25px;
+            position: absolute;
+            left: 91%;
+            top: 34%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="register-banner">
+        <div class="red-banner">
+            <div class="text">
+                Rejoignez le Club Chiot de Purina® pour tout savoir sur l'éducation de votre chiot !Rejoignez le
+                programme Purina et découvrez nos conseils d’experts<br> pour prendre soin de vos boules de poils
+                préférées !
+            </div>
+            <div class="cta-button">
+                <a href="https://www.purina.fr/inscription" class=" cta-button icon">JE M’INSCRIS</a>
+                <img src="images\icon.png">
+            </div>
+            <div class="logo">
+                <img src="images\logo2.png">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
