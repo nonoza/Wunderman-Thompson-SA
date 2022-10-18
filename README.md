@@ -1,68 +1,17 @@
-# Wunderman Thompson South Africa - Cadbury Easter Landing Page
+# Wunderman Thompson South Africa Projects
+
+This repository contains projects I completed in the company
 
 
 
-## Table of contents
+GitHub landing page: [https://github.com/nonoza/wundermanthompsonsa]
 
-- [Overview](#overview)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-- [Author](#author)
+## Projects
 
-
-
-
-
-### Screenshot
-Deskop
-![](./images/desktop.PNG)
-Mobile
-![](./images/mobile.PNG)
-
-
-
-
-### Links
-
-- Solution URL: [Link to Soulution](https://www.frontendmentor.io/solutions/qr-code-component-using-sass-D1pxDunfH-)
-- Live Site URL: [Link to Live](https://nonoza.github.io/qr-code-component-main/)
-
-## My process
-- Started with the HTML to build a structure of the page.
-- Styled the page using CSS for both Mobile and Desktop.
-
- 
-### Built with
-
-- Semantic HTML5 markup
-- CSS custom properties
-
-
-
-
-
-### What I learned
-
-- Mobile first is important.
-- Learned about Responsive typography.
-
-
-
-
-### Useful resources
-
-- [Responsive typography](https://css-tricks.com/snippets/css/fluid-typography/) 
-
-
-
-## Author
-
-- Website - [Pretty Kunene](http://prettynkunene.co.za/)
-- Frontend Mentor - [@nonoza](https://www.frontendmentor.io/profile/nonoza)
-
-
-
-
+| No. | Project name and link                                                                             | Repo |
+| --- | ------------------------------------------------------------------------------------------------- | ---- |
+| 1   | [Cadbury Landing Page](https://nonoza.github.io/wundermanthompsonsa/cadbury-easter-landing-page/)         | [Link to GitHub repo](https://github.com/nonoza/wundermanthompsonsa/tree/main/cadbury-easter-landing-page) |
+| 2   | [Challowen Page](https://nonoza.github.io/wundermanthompsonsa/challoween-page/)         | [Link to GitHub repo](https://github.com/nonoza/wundermanthompsonsa/tree/main/challoween-page) |
+| 3   | [Floating Banner](https://nonoza.github.io/wundermanthompsonsa/purina-floating-banner/)| [Link to GitHub repo](https://github.com/nonoza/wundermanthompsonsa/tree/main/purina-floating-banner) |
+| 4   | [Floating Popup](https://nonoza.github.io/wundermanthompsonsa/purina-one-popup/)| [Link to GitHub repo](https://github.com/nonoza/wundermanthompsonsa/tree/main/purina-one-popup) |
+ |
