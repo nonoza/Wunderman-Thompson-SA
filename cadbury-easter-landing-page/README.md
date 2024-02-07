@@ -1,4 +1,4 @@
-# Wunderman Thompson South Africa - Cadbury Easter Landing Page
+# VML South Africa - Cadbury Easter Landing Page
 
 
 
