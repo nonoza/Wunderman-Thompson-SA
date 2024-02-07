@@ -1,10 +1,10 @@
-# Wunderman Thompson South Africa Projects
+# VML South Africa Projects
 
-This repository contains projects I completed in the company
+The projects I have finished at the company are housed in this repository.
 
 
 
-GitHub landing page: [https://github.com/nonoza/wundermanthompsonsa]
+GitHub landing page: [https://github.com/nonoza/vmlsa]
 
 ## Projects
 
