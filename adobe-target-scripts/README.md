@@ -4,7 +4,7 @@
 
 ## Overview
 
-This repository contains resources and scripts to enable A/B testing and implement personalized experience activities using Adobe Target. Adobe Target empowers marketers and developers to deliver targeted and personalized content to enhance user engagement and conversion rates.
+This repository contains resources and scripts to enable A/B testing and implement personalized experience activities using Adobe Target. Adobe Target empowers marketers and developers to deliver targeted and personalized content to enhance user engagement and conversion rates.Each script aligns with Jira tickets created for various tests.
 
 ## Clients
 The examination was conducted using Ford Motor Company as the subject, and it encompassed evaluations across all markets, spanning various countries.
