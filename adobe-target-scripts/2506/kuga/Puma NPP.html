@@ -1,0 +1,51 @@
+<script>
+
+    console.log('OT-2506 old kuga npp')
+
+
+    var con, cl = [];
+
+    var key = '';
+    var colorComponent = setInterval(() => {
+        console.log('searching the colorizer compoent')
+        con = document.querySelectorAll('.threesixtyColouriser img')
+        cl = document.querySelectorAll('.feature-chip')
+        componentFound();
+
+    }, 250)
+
+    function componentFound() {
+        if (con.length > 0 && cl.length > 6) {
+            clearInterval(colorComponent);
+            var selectedColor = localStorage.getItem('selectedColor')
+            var key = JSON.parse(localStorage.getItem('car_config_2506')).car_name;
+            var key = key.includes("Mustang") ? key.replace('Mustang', '').trim() : key
+            if (window.location.href.toLocaleLowerCase().indexOf(key.toLocaleLowerCase()) > 0) {
+                setTimeout(() => {
+                    var newImage = JSON.parse(localStorage.getItem('car_config_2506')).image;
+                   con[0].src = newImage;
+                    for (let i = 1; i < cl.length; i++) {
+                        if (cl[i].innerText.toLocaleLowerCase().includes(selectedColor.toLocaleLowerCase())) {
+                            cl[i].click()
+                            console.log(cl[i])
+                        } 
+
+                    }
+
+                    window.targetCampaign = window.targetCampaign || {
+                        page: {
+                            campaignName: 'tt:nwp:opt-2506:ab:vhp:interested-warm:var-b'
+                        }
+                    }
+
+                    _satellite.track('genericTestingImpressionIDWorkaround');
+                }, 1000)
+
+
+            }
+
+        }
+    }
+
+
+</script>

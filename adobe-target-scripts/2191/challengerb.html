@@ -1,0 +1,54 @@
+<script>
+console.log("OT-2197 | challenger b");
+
+
+var waitForJquery = setInterval(function () {
+    console.log('Checking for jQuery')
+    if (window.jQuery) {
+        // jQuery is loaded
+        $ = jQuery;
+        clearInterval(waitForJquery);
+        // fireImpressionId();
+        // addNewStrip();
+        addingMenu();
+        fireImpressionId()
+
+      
+    }
+}, 100);
+
+
+
+function addingMenu(){
+    //Wait for the menu to search 
+    let waitForMenu = setInterval(()=>{
+        let mainMenu = document.querySelectorAll('.main-header .richtext-menu ul>li.has-children>ul, .main-header .utility-menu ul>li.has-children>ul');
+        // once the  menu is found, clear interval
+        clearInterval(waitForMenu);
+
+        //create a menu
+        let electicMenuListItem = document.createElement('li');
+        let electicMenuListAnchor = document.createElement('a');
+        electicMenuListItem.appendChild(electicMenuListAnchor);
+        electicMenuListAnchor.href = "/hybrid-electric/going-electric"
+        electicMenuListAnchor.tabIndex = 0;
+        electicMenuListAnchor.textContent = "Going Electric";
+        mainMenu[2].children[0].children[0].prepend(electicMenuListItem);
+        mainMenu[2].children[2].children[0].children[0].remove();
+
+    })
+}
+
+function fireImpressionId() {
+    window.targetCampaign = {
+page: {
+  campaignName: 'tt:nwp:opt-2191:ab:ase:electric-nav:var-b'
+
+}
+}
+
+_satellite.track('genericTestingImpressionIDWorkaround');
+console.log('done firing -- first pass');
+}
+
+</script>

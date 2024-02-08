@@ -1,0 +1,22 @@
+<script>
+  console.log("control is running");
+
+  window.targetCampaign = {
+    page: {
+      campaignName: "tt:nwp:opt-2548:ab:bp:engine-vs-drive:control",
+    },
+  };
+
+  _satellite.track("genericTestingImpressionIDWorkaround");
+  console.log("done firing -- first pass");
+
+  setTimeout(function () {
+    window.targetCampaign = {
+      page: {
+        campaignName: "",
+      },
+    };
+    _satellite.track("");
+    console.log("done firing -- second pass");
+  }, 250);
+</script>

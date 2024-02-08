@@ -1,0 +1,49 @@
+
+<script>
+console.log("OT-2191 | challenger c");
+
+
+var waitForJquery = setInterval(function () {
+    console.log('Checking for jQuery')
+    if (window.jQuery) {
+        // jQuery is loaded
+        $ = jQuery;
+        clearInterval(waitForJquery);
+        // fireImpressionId();
+        // addNewStrip();
+        swapMenu();
+        fireImpressionId()
+
+      
+    }
+}, 100);
+
+
+
+function swapMenu(){
+    //Wait for the menu to search 
+    let waitForMenu = setInterval(()=>{
+        let mainMenu = document.querySelectorAll('.main-header .richtext-menu ul>li.has-children>ul, .main-header .utility-menu ul>li.has-children>ul');
+        // once the  menu is found, clear interval
+        clearInterval(waitForMenu);
+
+        let menuItemListClone =  mainMenu[2].children[2].cloneNode(true);
+         mainMenu[2].insertBefore(menuItemListClone,mainMenu[2].children[1])
+         mainMenu[2].children[3].remove()
+
+    })
+}
+
+function fireImpressionId() {
+    window.targetCampaign = {
+page: {
+  campaignName: 'tt:nwp:opt-2191:ab:ase:electric-nav:var-c'
+
+}
+}
+
+_satellite.track('genericTestingImpressionIDWorkaround');
+console.log('done firing -- first pass');
+}
+
+</script>

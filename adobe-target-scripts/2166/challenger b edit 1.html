@@ -1,0 +1,311 @@
+<script>
+    console.log("OT-2166-challenger-b");
+
+    var waitForJquery = setInterval(function () {
+        console.log('Checking for jQuery')
+        if (window.jQuery) {
+            // jQuery is loaded
+            $ = jQuery;
+            clearInterval(waitForJquery);
+            fireImpressionId();
+            addNewStrip();
+          
+
+            // setTimeout(function () {
+            //     setOnClick();
+            //     $('body').click();
+            // }, 750);
+        }
+    }, 100);
+
+    //kuga
+        waitForElm('[id="inventory-results-panel-nameplate:Kuga-content"] > div > div > div').then((elm) => {
+           
+            // console.dir(jQuery(elm[0].childen));
+            if(jQuery(elm) != null  && jQuery(elm) != undefined) {
+               
+
+                      jQuery(`<div class="sc-fFlnrN dIuLfJ">
+                        <div id="kugabg" data-automation="ecommerce-card" class="sc-bOhtcR sc-lfYzqA OUCxM"><div class="sc-eBwKMn iYuERu">
+                          <span>PAKIET 4 LATA OCHRONY: FORD PROTECT, GWARANCJA I SERWIS W CENIE<sup>1</sup></span></div>
+                          <span class="sc-ijDOKB iDIjom"><span></span></span><div class="sc-lgjHQU gnIUTb"></div></div></div>`).insertBefore(jQuery(elm)[0].children[2]);
+            }
+ setTimeout(()=>{         
+let VehicleCheckBoxes2 = document.querySelectorAll('.sc-bDpDS');
+for (let i = 0; i < VehicleCheckBoxes2.length; i++) {
+  VehicleCheckBoxes2[i].addEventListener("click", () => {
+    console.log("clicked");
+    if (VehicleCheckBoxes2[i].innerText.includes("Kuga")) {
+      waitForElm('[id="inventory-results-panel-nameplate:Kuga-content"] > div > div > div').then((elm) => {
+        if (jQuery(elm).length > 0) { // Check if there is at least one matching element
+          jQuery(`<div class="sc-fFlnrN dIuLfJ">
+                        <div id="kugabg" data-automation="ecommerce-card" class="sc-bOhtcR sc-lfYzqA OUCxM"><div class="sc-eBwKMn iYuERu">
+                          <span>PAKIET 4 LATA OCHRONY: FORD PROTECT, GWARANCJA I SERWIS W CENIE<sup>1</sup></span></div>
+                          <span class="sc-ijDOKB iDIjom"><span></span></span><div class="sc-lgjHQU gnIUTb"></div></div></div>`).insertBefore(jQuery(elm)[0].children[2]);
+        }
+      });
+    }
+
+  });
+ 
+}
+
+        });
+        setTimeout(()=>{     
+          if(navigator.userAgent.match(/Mobile/i)
+      || navigator.userAgent.match(/iPhone/i)
+      || navigator.userAgent.match(/iPod/i)
+      || navigator.userAgent.match(/IEMobile/i)
+      || navigator.userAgent.match(/Windows Phone/i)
+      || navigator.userAgent.match(/Android/i)
+      || navigator.userAgent.match(/BlackBerry/i)
+      || navigator.userAgent.match(/webOS/i)
+      || navigator.userAgent.match(/iPhone|iPod|iPad/i)
+      )
+       {
+  console.log("mobile detected");
+
+  let filterButton = document.querySelector('button.sc-lizKOf.gJKSR');
+  console.log(filterButton);
+
+  if (filterButton !== null && filterButton !== undefined) {
+    filterButton.addEventListener("click", () => {
+      console.log("button clicked");
+      setTimeout(()=>{         
+let VehicleCheckBoxes2 = document.querySelectorAll('.sc-bDpDS');
+for (let i = 0; i < VehicleCheckBoxes2.length; i++) {
+  VehicleCheckBoxes2[i].addEventListener("click", () => {
+    console.log("clicked");
+    if (VehicleCheckBoxes2[i].innerText.includes("Kuga")) {
+      waitForElm('[id="inventory-results-panel-nameplate:Kuga-content"] > div > div > div').then((elm) => {
+        if (jQuery(elm).length > 0) { // Check if there is at least one matching element
+          jQuery(`<div class="sc-fFlnrN dIuLfJ">
+                        <div id="kugabg" data-automation="ecommerce-card" class="sc-bOhtcR sc-lfYzqA OUCxM"><div class="sc-eBwKMn iYuERu">
+                          <span>PAKIET 4 LATA OCHRONY: FORD PROTECT, GWARANCJA I SERWIS W CENIE<sup>1</sup></span></div>
+                          <span class="sc-ijDOKB iDIjom"><span></span></span><div class="sc-lgjHQU gnIUTb"></div></div></div>`).insertBefore(jQuery(elm)[0].children[2]);
+        }
+      });
+    }
+
+  });
+ 
+}
+
+        });
+    });
+  }
+}
+
+        })
+
+      }) 
+   
+        //Puma
+waitForElm('[id="inventory-results-panel-nameplate:Puma-content"] > div > div > div').then((elm) => {
+        
+            // console.dir(jQuery(elm[0].childen));
+            if(jQuery(elm) != null  && jQuery(elm) != undefined) {
+                jQuery(`<div class="sc-fFlnrN dIuLfJ"><div id="pumabg" data-automation="ecommerce-card" class="sc-bOhtcR sc-lfYzqA OUCxM">
+                      <div class="sc-eBwKMn iYuERu">
+                      <span>PAKIET 4 LATA OCHRONY: FORD PROTECT, GWARANCJA I SERWIS W CENIE<sup>1</sup></span></div>
+                      <span class="sc-lfYzqA jCiCxa"><span></span></span><div class="sc-cKXybt cnaoax"></div></div></div>`).insertBefore(jQuery(elm)[0].children[2]);
+            }
+setTimeout(()=> { 
+  let VehicleCheckBoxes2 = document.querySelectorAll('.sc-bDpDS');
+for (let i = 0; i > VehicleCheckBoxes2.length; i++) {
+  VehicleCheckBoxes2[i].addEventListener("click", () => {
+    console.log("clicked");
+    if (VehicleCheckBoxes2[i].innerText.includes("Puma")) {
+      waitForElm('[id="inventory-results-panel-nameplate:Puma-content"] > div > div > div').then((elm) => {
+        if ((jQuery(elm).length > 0)) {
+          jQuery(`<div class="sc-fFlnrN dIuLfJ"><div id="pumabg" data-automation="ecommerce-card" class="sc-bOhtcR sc-lfYzqA OUCxM">
+                          <div class="sc-eBwKMn iYuERu">
+                          <span>PAKIET 4 LATA OCHRONY: FORD PROTECT, GWARANCJA I SERWIS W CENIE<sup>1</sup></span></div>
+                          <span class="sc-lfYzqA jCiCxa"><span></span></span><div class="sc-cKXybt cnaoax"></div></div></div>`).insertBefore(jQuery(elm)[0].children[2]);
+        }
+      });
+
+    }
+   
+  });
+}
+},250)  
+setTimeout(()=>{     
+  if(navigator.userAgent.match(/Mobile/i)
+      || navigator.userAgent.match(/iPhone/i)
+      || navigator.userAgent.match(/iPod/i)
+      || navigator.userAgent.match(/IEMobile/i)
+      || navigator.userAgent.match(/Windows Phone/i)
+      || navigator.userAgent.match(/Android/i)
+      || navigator.userAgent.match(/BlackBerry/i)
+      || navigator.userAgent.match(/webOS/i)
+      || navigator.userAgent.match(/iPhone|iPod|iPad/i)
+      )
+       {
+  console.log("mobile detected");
+
+  let filterButton = document.querySelector('button.sc-lizKOf.gJKSR');
+  console.log(filterButton);
+
+  if (filterButton !== null && filterButton !== undefined) {
+    filterButton.addEventListener("click", () => {
+      console.log("button clicked");
+      setTimeout(()=> { 
+  let VehicleCheckBoxes2 = document.querySelectorAll('.sc-bDpDS');
+for (let i = 0; i > VehicleCheckBoxes2.length; i++) {
+  VehicleCheckBoxes2[i].addEventListener("click", () => {
+    console.log("clicked");
+    if (VehicleCheckBoxes2[i].innerText.includes("Puma")) {
+      waitForElm('[id="inventory-results-panel-nameplate:Puma-content"] > div > div > div').then((elm) => {
+        if ((jQuery(elm).length > 0)) {
+          jQuery(`<div class="sc-fFlnrN dIuLfJ"><div id="pumabg" data-automation="ecommerce-card" class="sc-bOhtcR sc-lfYzqA OUCxM">
+                          <div class="sc-eBwKMn iYuERu">
+                          <span>PAKIET 4 LATA OCHRONY: FORD PROTECT, GWARANCJA I SERWIS W CENIE<sup>1</sup></span></div>
+                          <span class="sc-lfYzqA jCiCxa"><span></span></span><div class="sc-cKXybt cnaoax"></div></div></div>`).insertBefore(jQuery(elm)[0].children[2]);
+        }
+      });
+
+    }
+   
+  });
+}
+},250)
+    });
+  }
+}
+
+})
+
+        });
+
+
+
+    function waitForElm(selector) {
+        return new Promise(resolve => {
+            if (document.querySelector(selector)) {
+                return resolve(document.querySelector(selector));
+            }
+
+            const observer = new MutationObserver(mutations => {
+                //console.log('selector : ' + selector);
+                if (document.querySelector(selector)) {
+                  //  console.log('resolving');
+                    resolve(document.querySelector(selector));
+                    observer.disconnect();
+                }
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        });
+    }
+    function addNewStrip() {
+  //Get the parentElement 
+   let parentElement = document.querySelectorAll('.main-header');
+ 
+   //console.log(parentElement[0])
+   //Check if the parentElement is not null or undefined
+   //If the parentElelemt is null or undefine, still checks
+   if(parentElement[0] !=null && parentElement[0] != undefined) {
+      //If the parentElement is not null or undefined , Add the banner.
+      var newStripBanner = `<div class="strip-banner">
+      <div class="strip-banner-content">
+      <div class="richtext strip-banner-white-v4 initialized-richtextBEV initialized-richtext"
+          data-guxacc-applied-styles="strip-banner-white-v4" data-analytics-content-type="strip banner">
+          <div class="richtext-content " data-analytics-downloads="[]" data-analytics-nameplates="[]"
+              data-analytics-content-type="strip banner">
+
+              <p style="text-align: center;">Nowoczesne, hybrydowe SUV-y Forda dla Firm już od 919 PLN netto/mies.*  <a
+                      data-acc-context-type="none" href="/kupuj-z-fordem/oferty/promocje/hybrydowe-suvy-forda"
+                      class="link-overlay initialized-anchor initialized-overlay initialized-contextualLinks acc-pd-overlay"
+                      data-analytics-link-type="cta" data-analytics-direct-call-rule="moduleInternalCtaClick"
+                      data-analytics-cta-name="test drive" role="button"
+                      data-id="link-overlay-contentoverlayswizardoverlaystdrvehicleCodeCF701-2328425502181" style = "text-decoration:underline;">Sprawdź&#62;&#62;</a></p>
+
+          </div>
+      </div>
+  </div>
+</div>`
+let div= document.createElement('div');
+div.classList.add('newStrip');
+div.innerHTML = newStripBanner;
+parentElement[0].appendChild(div);
+
+
+   }
+   
+  }
+
+
+    function fireImpressionId() {
+        window.targetCampaign = {
+    page: {
+      campaignName: 'tt:nwp:opt-2166:ab:inv:web-strategy:var-b'
+ 
+    }
+  }
+ 
+  _satellite.track('genericTestingImpressionIDWorkaround');
+  console.log('done firing -- first pass');
+    }
+
+  
+</script>
+<style>
+    .newStrip {
+    width: 100%;
+  }
+  #kugabg{
+    background-color: var(--color-primary)!important;
+    background-position: center center;
+    background-size: cover;
+    background-image: url(/content/dam/guxeu/pl/pl_pl/home/shop/inventory-showroom/ecommerce-cards/ford-inventory-pl-inventory_card_Kuga02-800x2000-grey-kuga-driving.jpg)!important;
+    object-fit: cover;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 10px 13px -6px rgba(var(--color-black-rgb),0.2), 0 20px 31px 3px rgba(var(--color-black-rgb),0.14), 0 8px 38px 7px rgba(var(--color-black-rgb),0.12);
+  }
+  #pumabg {
+  background-color: var(--color-primary)!important;
+    background-position: center center;
+    background-size: cover;
+    background-image: url(/content/dam/guxeu/pl/pl_pl/home/shop/inventory-showroom/ecommerce-cards/ford-inventory-pl-inventory_card_Puma-800x2000-ruby-red-puma-parked.jpg)!important;
+    object-fit: cover;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 10px 13px -6px rgba(var(--color-black-rgb),0.2), 0 20px 31px 3px rgba(var(--color-black-rgb),0.14), 0 8px 38px 7px rgba(var(--color-black-rgb),0.12);
+  }
+  .sc-eBwKMn.iYuERu {
+    font-family: var(--typography-antennaCond);
+    font-size: 34px;
+    font-weight: 300;
+    line-height: 1.29;
+    letter-spacing: 4px;
+    text-align: center;
+    color: var(--color-white);
+    margin: auto;
+    padding: 42px 40px 0px;
+    flex: 1 1 0%;
+}
+  .jCiCxa {
+    font-family: var(--typography-antenna);
+    font-size: 12px;
+    line-height: 2;
+    letter-spacing: 1px;
+    text-align: center;
+    color: var(--color-white);
+    padding: 42px 40px 0px;
+    flex: 1 1 0%;
+  }
+  .cnaoax {
+    padding: 16px;
+    position: relative;
+    z-index: var(--higher-zIndex);
+    width: 100%;
+  }
+ 
+  </style>

@@ -1,0 +1,24 @@
+<script>
+  
+    window.addEventListener("load", function () {
+      console.log("OT-1764 Control")
+        
+
+            window.targetCampaign = window.targetCampaign || {
+                page: {
+                    campaignName: 'tt:nwp:opt-1764:ab:hp:first-time-visits:control'
+                }
+            }
+
+            _satellite.track('genericTestingImpressionIDWorkaround');
+           
+
+        })
+
+
+
+
+
+
+    
+</script>

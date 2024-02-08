@@ -1,0 +1,26 @@
+
+<script>
+
+
+// Function to remove descriptions from image captions
+function removeDescription() {
+    // Step 1: Fetch the location of the titles by selecting elements with class 'image-caption'
+    let imageColomn = document.querySelectorAll('.image-caption');
+
+    // Step 2: Loop through the titles starting from index 1 (assuming 0 is the first one)
+    for (var i = 1; i < imageColomn.length; i++) {
+        // Step 3: Remove the second child of each image-caption element,
+        // assuming the description is the second child
+        imageColomn[i].children[1].remove();
+    }
+    window.targetCampaign = window.targetCampaign || {
+                page: {
+                    campaignName: 'tt:nwp:opt-2506:ab:vhp:interested-warm:var-b'
+                }
+            }
+
+            _satellite.track('genericTestingImpressionIDWorkaround');
+}
+removeDescription();
+
+</script>

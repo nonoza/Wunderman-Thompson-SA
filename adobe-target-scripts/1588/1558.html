@@ -1,0 +1,64 @@
+<script>
+    window.addEventListener('hashchange', () => {
+        var isRunning;
+        console.log('OT-1588')
+        setTimeout(function(){
+            let copy = "";
+            let p_tags = document.querySelectorAll('p');
+            let target_p = [...p_tags].filter(node => node.innerText.includes('inviala'));
+            console.log('p tags >> ',target_p)
+            target_p.forEach(el => {
+              function link(){
+                let btn = document.querySelector('button[data-testid="summary-static-cta"]').click();
+              }
+                el.innerHTML = copy = el.innerHTML.replace('inviala', '<a href="javascript:;" style="pointer:cursor;text-decoration:none;color: rgb(77, 77, 77);font-weight: bold;">inviala</a>');
+                        function link(){
+                let btn = document.querySelector('button[data-testid="summary-static-cta"]').click();
+              }
+            el.addEventListener('click',link);
+            
+                //console.log('element ')
+                // var j = el.querySelector('a')
+                 //if(j != 'undefined'){
+                   // j.addEventListener('click',function(ev){
+                        //ev.preventDefault()
+                        //document.querySelector('button[data-testid="summary-static-cta"]').click();
+    //})
+                 //}
+            })
+        },3000)   
+        if (window.location.href.indexOf('summary') >= 0) {
+            console.log("control is running");
+    
+    window.targetCampaign = {
+      page: {
+        campaignName: 'tt:nwp:opt-1588:ab:bp:hyperlink:var-b'
+   
+      }
+    }
+   
+    _satellite.track('genericTestingImpressionIDWorkaround');
+    console.log('done firing -- first pass');
+   
+   
+    setTimeout(function(){
+   
+      window.targetCampaign = {
+      page:{
+        campaignName: ''
+      }
+    }
+    _satellite.track('');
+    console.log('done firing -- second pass');
+    },250)
+        } 
+      }, false);
+
+    </script>
+    <style>
+        .SummaryVehiclePreview__SummaryPreorderText-hg0o7h-12.iaIVLt p a {
+      text-decoration:none;
+      color: rgb(77, 77, 77);
+      font-weight: bold;
+    }
+    </style>

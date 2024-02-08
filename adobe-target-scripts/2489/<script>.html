@@ -1,0 +1,67 @@
+<script>
+
+
+    console.log("OT-2489");
+   
+
+    var mainNavigation,
+        customBanner = null;
+
+    var loadDom = setInterval(() => {
+        console.log("searching html elements")
+        mainNavigation = document.querySelectorAll(
+            ".gux3-secondaryNavigation ul"
+        );
+        
+        
+        domLoaded();
+    }, 250);
+
+    let elementMarkUp = (container)=>{
+        
+        var clone_Element = container[3].children[0].cloneNode(true);
+        clone_Element.firstElementChild.href = '#';
+        clone_Element.firstElementChild.innerText = 'Service Plan';
+        clone_Element.firstElementChild.removeAttribute('data-acc-context-type');
+        clone_Element.firstElementChild.removeAttribute('data-analytics-direct-call-rule');
+        clone_Element.firstElementChild.removeAttribute('data-id');
+        clone_Element.firstElementChild.addEventListener('click', function (event) {
+    event.preventDefault();
+    linkTrigger();
+});
+
+        
+        return clone_Element
+    }
+
+    var domLoaded = () => {
+        if ((mainNavigation.length > 0) && (mainNavigation != null)) {
+            clearInterval(loadDom);
+            // console.log("Elements ",mainNavigation)
+            // console.log("target elements found");
+            if(document.documentElement.clientWidth >= 992){
+             mainNavigation[3].prepend(elementMarkUp(mainNavigation));
+            }else{
+                mainNavigation[0].insertBefore(elementMarkUp(mainNavigation),mainNavigation[0].children[5]);
+            }
+            
+
+            window.targetCampaign = {
+                page: {
+                    campaignName: "tt:nwp:opt-2489:ab:psr:Service-Plan:Challenger",
+                },
+            };
+
+            _satellite.track("genericTestingImpressionIDWorkaround");
+        }
+    };
+
+   function linkTrigger()
+ {
+    accordionOpen = true;
+    let accBtn = document.querySelectorAll('a.accordion-trigger.accordion-trigger-inline.content-right');
+    if (accBtn) {
+      accBtn[0].click(); 
+    }
+  }
+</script>

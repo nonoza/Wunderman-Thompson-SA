@@ -1,0 +1,154 @@
+<script>
+
+    // Declare variables
+    // Set value in local storage
+    // Set up an interval function
+    // Define the wrapperFound function
+    // Check if close_button array has elements
+     // Clone the parent node and replace with a new element
+       // Parse the value from local storage
+        // Add event listener to the new_close element
+        // Check the value of count
+         // Update primary heading and text elements
+         // Update link_original element and remove second_Cta element
+         // Update hero_image_source and hero_image elements
+         // Increment count and update local storage
+         // Update new_close href and redirect window
+          // Check if 'impressionFired' is not present in local storage
+          // Call _satellite.track function
+          // Add event listeners for beforeunload and popstate events
+    // Declare variables
+    var close_button = [];
+    var primary_heading;
+    var text;
+    
+    // Log message to the console
+    console.log('OT-2147 Challenger C');
+    
+    // Set value in local storage
+    localStorage.setItem("cta_click", '0');
+    
+    // Set up an interval function
+    var searchWrapper = setInterval(() => {
+      close_button = document.querySelectorAll('.reservation-close-button a.reservation-close-button__link');
+      wrapperFound();
+    }, 10);
+    
+    // Define the wrapperFound function
+    function wrapperFound() {
+      // Check if close_button array has elements
+      if (close_button.length > 0) {
+        // Clear the interval
+        clearInterval(searchWrapper);
+    
+        // Clone the parent node and replace with a new element
+        var new_close = close_button[0].parentNode.cloneNode(true);
+        new_close.classList.add("btn-close-2147");
+        close_button[0].parentNode.replaceWith(new_close);
+    
+        // Parse the value from local storage
+        var count = parseInt(localStorage.getItem('cta_click'));
+    
+        // Add event listener to the new_close element
+        new_close.querySelector('a').onclick = null;
+        new_close.querySelector('a').href = "#";
+        new_close.querySelector('a').addEventListener('click', function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+    
+          // Check the value of count
+          if (count < 1) {
+            // Update primary heading and text elements
+            primary_heading = document.querySelector('.main-content-wrapper h1');
+            primary_heading.innerHTML = 'Restons <b> en contact!</b>';
+            text = document.querySelectorAll('.main-content-wrapper p');
+            text[0].textContent = "Vous n'êtes pas encore prêt(e) à réserver ? Pas de problème, nous vous tiendrons au courant des actualités à venir sur le Nouveau Explorer 100% électrique.";
+            text[0].id = "text";
+            text[1].remove();
+    
+            // Update link_original element and remove second_Cta element
+            let link_original = document.querySelector('div.main-content-wrapper .reservation-cta__link.reservation-cta__link--primary');
+            link_original.parentElement.closest('.reservation-login__inner').setAttribute('data-redirect-url', '/content/overlays/wizard-overlays/kmi-electric-explorer');
+            link_original.href = '/content/overlays/wizard-overlays/kmi-electric-explorer';
+            link_original.target = '_blank';
+            link_original.classList.add('nextgen-primary-cta', 'link-overlay', 'initialized-overlay');
+            link_original.removeAttribute('data-cta-analytics-direct-call-rule');
+            link_original.removeAttribute('data-cta-link-target');
+            link_original.removeAttribute('data-cta-context-type');
+            link_original.removeAttribute('data-cta-analytics-content-type');
+            link_original.removeAttribute('data-cta-analytics-cta-name');
+            link_original.removeAttribute('data-cta-analytics-link-type');
+            link_original.querySelector('span').textContent = 'Tenez-moi informé(e)';
+            let second_Cta = document.querySelector('div.reservation-cta-second');
+            second_Cta.remove();
+    
+            // Update hero_image_source and hero_image elements
+            var arr = [
+              '/content/dam/guxeu/nextgen/cx740s/reservations/04_CX740S_Ext_Beauty_Side_Profile_Dynamic_6_780x439_16x9.jpg.renditions.extra-large.jpeg',
+              '/content/dam/guxeu/nextgen/cx740s/reservations/04_CX740S_Ext_Beauty_Side_Profile_Dynamic_6_780x439_16x9.jpg.renditions.large.jpeg',
+              '/content/dam/guxeu/nextgen/cx740s/reservations/04_CX740S_Ext_Beauty_Side_Profile_Dynamic_6_780x439_16x9.jpg.renditions.medium.jpeg',
+              '/content/dam/guxeu/nextgen/cx740s/reservations/04_CX740S_Ext_Beauty_Side_Profile_Dynamic_6_780x439_16x9.jpg.renditions.small.jpeg',
+              '/content/dam/guxeu/nextgen/cx740s/reservations/04_CX740S_Ext_Beauty_Side_Profile_Dynamic_6_780x439_16x9.jpg.renditions.extra-small.jpeg'
+            ];
+            var hero_image_source = document.querySelectorAll('.reservation-hero-image picture source');
+            for (var i = 0; i < hero_image_source.length; i++) {
+              hero_image_source[i].srcset = arr[i];
+            }
+            var hero_image = document.querySelectorAll('.reservation-hero-image img');
+            hero_image[0].src = '/content/dam/guxeu/nextgen/cx740s/reservations/04_CX740S_Ext_Beauty_Side_Profile_Dynamic_6_780x439_16x9.jpg.renditions.extra-large.jpeg';
+    
+            // Increment count and update local storage
+            count = count + 1;
+            localStorage.setItem('cta_count', count);
+          } else {
+            // Update new_close href and redirect window
+            new_close.href = '/voitures-neuves/explorer-electrique';
+            window.location.href = '/voitures-neuves/explorer-electrique';
+          }
+          window.targetCampaign = window.targetCampaign || {
+            page: {
+              campaignName: 'tt:nwp:opt-2147:ab:vhp:add-kmi:var-c'
+            }
+          };
+          
+          // Call _satellite.track function
+          _satellite.track('genericTestingImpressionIDWorkaround');
+        });
+    
+        // Check if 'impressionFired' is not present in local storage
+        // if (!Boolean(localStorage.getItem('impressionFired'))) {
+        //   // Set window.targetCampaign object
+        //   window.targetCampaign = window.targetCampaign || {
+        //     page: {
+        //       campaignName: 'tt:nwp:opt-2147:ab:vhp:add-kmi:var-c'
+        //     }
+        //   };
+          
+        //   // Call _satellite.track function
+        //   _satellite.track('genericTestingImpressionIDWorkaround');
+          
+        //   // Set 'impressionFired' in local storage
+        //   localStorage.setItem('impressionFired', 'true');
+        // }
+    
+        // // Add event listeners for beforeunload and popstate events
+        // window.addEventListener('beforeunload', function () {
+        //   localStorage.removeItem('impressionFired');
+        // });
+    
+        // window.addEventListener('popstate', function () {
+        //   localStorage.removeItem('impressionFired');
+        // });
+      }
+    }
+    </script>
+    <style>
+    .newStrip {
+    width: 100%;
+}
+#text p {
+  font-size: 0.95rem;
+  letter-spacing: .4px;
+  line-height: 1.9;
+  }
+</style>

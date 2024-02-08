@@ -1,0 +1,30 @@
+<script>
+console.log("OT-2197 | control");
+
+
+var waitForJquery = setInterval(function () {
+    console.log('Checking for jQuery')
+    if (window.jQuery) {
+      
+        fireImpressionId()
+
+      
+    }
+}, 100);
+
+
+
+
+function fireImpressionId() {
+    window.targetCampaign = {
+page: {
+  campaignName: 'tt:nwp:opt-2191:ab:ase:electric-nav:control'
+
+}
+}
+
+_satellite.track('genericTestingImpressionIDWorkaround');
+console.log('done firing -- first pass');
+}
+
+</script>

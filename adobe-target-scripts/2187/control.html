@@ -1,0 +1,42 @@
+<script>
+  let domain = "https://www.ford.es/turismos/explorer-electrico";
+
+  if (window.location.href.indexOf(domain) >=0) {
+    console.log("OT-OT-2187 | Arrows to Encourage Scrolling | Control");
+
+var waitForJquery = setInterval(function () {
+    console.log('Checking for jQuery')
+    if (window.jQuery) {
+        // jQuery is loaded
+        $ = jQuery;
+        clearInterval(waitForJquery);
+        fireImpressionId();
+    
+
+        // setTimeout(function () {
+        //     setOnClick();
+        //     $('body').click();
+        // }, 750);
+    }
+}, 100);
+
+
+
+
+function fireImpressionId() {
+    window.targetCampaign = {
+page: {
+  campaignName: 'tt:nwp:opt-2187:ab:vhp:arrow-on-npp:control'
+
+}
+}
+
+_satellite.track('genericTestingImpressionIDWorkaround');
+console.log('done firing -- first pass');
+}
+  }
+
+   
+
+  
+</script>

@@ -1,0 +1,53 @@
+<script>
+  function copyChange() {
+    //fetch the navigation
+    let waitForElement = setInterval(() => {
+      let navigations = document.querySelectorAll(
+        ".Navigation__NavigationLink-sc-1qnud7g-4"
+      );
+      // console.log(navigations);
+
+      // check if the navigations exist and not undefined
+      if (navigations != undefined && navigations != null) {
+        // stop the interval of looking for the element.
+        clearInterval(waitForElement);
+
+        // loop through each navigation to find the one that need to change from drive to engine.
+        for (var i = 0; i < navigations.length; i++) {
+          // if the one to change has a text "Drive":
+          if (navigations[i].innerHTML == "Drive") {
+            // change it to Engine.
+            navigations[i].innerHTML = "Engine";
+          }
+        }
+      }
+    });
+    impression();
+  }
+
+  function impression() {
+    // load the impression
+    console.log("control is running");
+
+    window.targetCampaign = {
+      page: {
+        campaignName: "tt:nwp:opt-2548:ab:bp:engine-vs-drive:challenger",
+      },
+    };
+
+    _satellite.track("genericTestingImpressionIDWorkaround");
+    console.log("done firing -- first pass");
+
+    setTimeout(function () {
+      window.targetCampaign = {
+        page: {
+          campaignName: "",
+        },
+      };
+      _satellite.track("");
+      console.log("done firing -- second pass");
+    }, 250);
+  }
+
+  copyChange();
+</script>

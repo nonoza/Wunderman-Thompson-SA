@@ -1,0 +1,70 @@
+<script>
+
+   window.addEventListener('load',function(){
+    if(window.location.href.indexOf(".ford.co.uk/cars/fiesta/promotions/") > -1){
+    console.log("OT-2489");
+    const LIMIT = 3000;
+    var startTime = new Date().getTime();
+
+    var mainNavigation,
+        customBanner = null;
+
+    var loadDom = setInterval(() => {
+        console.log("searching html elements")
+        mainNavigation = document.querySelectorAll(
+            ".gux3-secondaryNavigation ul"
+        );
+        
+        
+        domLoaded();
+    }, 250);
+
+    let elementMarkUp = (container)=>{
+        
+        var clone_Element = container[3].children[0].cloneNode(true);
+        clone_Element.firstElementChild.href = '#';
+        clone_Element.firstElementChild.innerText = 'Service Plan';
+        clone_Element.firstElementChild.addEventListener('click', function (event) {
+        event.preventDefault();
+        linkTrigger();
+    });
+
+        
+        return clone_Element
+    }
+
+    var domLoaded = () => {
+        if ((mainNavigation.length > 0) && (mainNavigation != null)) {
+            clearInterval(loadDom);
+            console.log("Elements ",mainNavigation)
+            console.log("target elements found");
+            mainNavigation[3].prepend(elementMarkUp(mainNavigation));
+       
+           
+            
+
+            window.targetCampaign = window.targetCampaign || {
+                page: {
+                    campaignName: "tt:nwp:opt-2489:ab:psr:Service-Plan:Challenger",
+                },
+            };
+
+            _satellite.track("genericTestingImpressionIDWorkaround");
+        } else {
+            var currentTime = new Date().getTime();
+            if (currentTime - startTime > LIMIT) {
+                clearInterval(loadDom);
+                console.log('elements not found clear')
+            }
+        }
+    };
+}
+   })
+   function linkTrigger() {
+    accordionOpen = true;
+    let accBtn = document.querySelector('a.accordion-trigger.accordion-trigger-inline.content-right');
+    if (accBtn) {
+        accBtn.click();
+    }
+}
+</script>

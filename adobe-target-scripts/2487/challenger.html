@@ -1,0 +1,24 @@
+<script>
+
+    console.log("OT-2487");
+    function ctaAcc() {
+    let ctaWrappers = document.querySelectorAll('#accelerator-page .offerAccordion .accordion-list .single-offer .richtext p a.cta-pill:last-child');
+
+    ctaWrappers.forEach(ctaWrapper => {
+        let newLink = document.createElement('a');
+        newLink.href = "https://www.ford.co.uk/shop/buy-online/inventory/pv#config=Fiesta";
+        newLink.textContent = "View Stock";
+        newLink.classList.add('cta-pill-primary', 'cta-pill');
+        ctaWrapper.parentNode.appendChild(newLink);
+   
+    });
+}
+    ctaAcc();
+    
+  
+
+
+
+  
+</script>
+

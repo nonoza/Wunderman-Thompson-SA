@@ -1,0 +1,33 @@
+<script>
+    window.addEventListener("load", function () {
+      console.log("OT-2308 Challenger");
+      // envoke the function
+          addingMenu();
+            window.targetCampaign = window.targetCampaign || {
+                page: {
+                    campaignName: 'tt:nwp:opt-2380:ab:ase:Promotion-Header:challenger'
+                }
+            }
+
+            _satellite.track('genericTestingImpressionIDWorkaround');
+
+        })
+
+        function addingMenu() {
+    // Looking for an element.
+    let globalNav = document.querySelectorAll('.thin-header-navigation');
+    // check if it available
+    if (globalNav != null && globalNav != undefined) {
+        console.log(globalNav);
+        let li = document.createElement('li');
+        let anchor = document.createElement('a');
+        anchor.textContent = "Promotions";
+        anchor.href = "https://www.ford.co.uk/shop/promotions/personal";
+        li.appendChild(anchor);
+        let ul = globalNav[0].children[0].children[0];
+        ul.prepend(li);
+
+    }
+}    
+
+</script>

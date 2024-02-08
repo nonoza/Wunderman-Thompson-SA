@@ -1,0 +1,33 @@
+
+<script>
+
+console.log('OT-2494')
+
+let accordionOpen = false;
+
+function linktheAcc() {
+  // Fetching all the accordions
+  let accList = document.querySelectorAll('.accordion-item');
+
+  accList.forEach((accordion) => {
+    accordion.onclick = function(event) {
+    event.preventDefault();
+    linkTrigger();
+};
+  });
+}
+
+function linkTrigger() {
+    // Open the accordion
+    accordionOpen = true;
+    let accBtn = document.querySelectorAll('a.accordion-trigger.accordion-trigger-inline.content-right');
+    if (accBtn.length > 0) {
+        accBtn[0].click();
+    }
+}
+
+  linktheAcc();
+
+</script>
+
+

@@ -1,0 +1,70 @@
+<script>
+  let domain = "https://www.ford.es/turismos/explorer-electrico";
+
+  if (window.location.href.indexOf(domain) >= 0) {
+ 
+    console.log("OT-2187 | Arrows to Encourage Scrolling | Challenger B ")
+//Create a variable that will wait for the element to be available.
+ let waitForBtnVariable = setInterval(()=>{
+    //Create a variable that holds the button.
+    let btnReserva = document.querySelectorAll('div[data-guxacc-applied-styles="richtext-cta-register"] > div');
+     // If the variable is available, clear the interval.
+    if(btnReserva !== null && btnReserva !== undefined){
+       //clear the interval
+       clearInterval(waitForBtnVariable);
+       // -- create a variable that will hold the arrow down element.
+       let arrowDown = `<div id="arrowAnim">
+ <img src="/content/dam/guxeu/global-shared/target/icons/caret-down.png" class="caret-down" alt="caret-down">
+  
+</div>`;
+
+        
+    //     arrowDown.alt = "arrow-icon"
+    //    // add the class List to the the arrow element.
+    //      arrowDown.classList.add("arrow-down");
+    //      arrowDown.classList.add('pulse');
+       // -- Create a variable that holds the parent Element
+       
+       // -- apend the arrowdown into a parent
+       let div= document.createElement('div');
+        div.innerHTML = arrowDown;
+        btnReserva[0].appendChild(div);
+        window.targetCampaign = {
+                page: {
+                campaignName: 'tt:nwp:opt-2187:ab:vhp:arrow-on-npp:var-b'
+            
+            }
+        }
+ 
+        _satellite.track('genericTestingImpressionIDWorkaround');
+        console.log('done firing -- first pass');
+    }
+     // On the winow scroll , the arrow must disappear
+    window.addEventListener("scroll",()=>{
+        console.log("scroll started...");
+        let arrowIcon = document.querySelectorAll('#arrowAnim');
+        arrowIcon[0].style.display = "none";
+    })
+ })
+};
+ 
+ </script>
+ <style>
+#arrowAnim {
+ margin-top: -9px;
+}
+.caret-down {
+  position: relative;
+    top: 20px;
+}
+/* .arrow {
+  width: 10px;
+  height: 10px;
+  border: 2px solid;
+  border-color: white transparent transparent white;
+  transform: rotate(-136deg);
+  position: relative;
+  top: 12px;
+} */
+
+ </style>

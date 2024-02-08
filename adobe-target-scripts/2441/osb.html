@@ -1,0 +1,27 @@
+<script>
+    window.addEventListener('load',()=>{
+        console.log('OT-2441 | OSB ABANDONS')
+    console.log('window onload - pending')
+        if (/online-szerviz-bejelentkezes/i.test(window.location.href)) {
+            console.log('window onload - passed')
+            adobe.target.getOffer({
+                mbox: 'global-mbox',
+                params: {
+                    'profile.hu.obsAbandoned': "true",
+                },
+                success: function (offer) {
+                    adobe.target.applyOffer({
+                        mbox: 'global-mbox',
+                        offer: offer,
+                    })
+                },
+                error: function (status, error) {
+                    console.log('Error', status, error)
+                },
+            })
+          
+        }
+     
+    })
+ 
+</script>

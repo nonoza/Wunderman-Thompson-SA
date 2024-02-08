@@ -1,0 +1,61 @@
+<script>
+  
+    window.addEventListener("load", function () {
+      console.log("OT-1764 Challenger C")
+        
+
+            window.targetCampaign = window.targetCampaign || {
+                page: {
+                    campaignName: 'tt:nwp:opt-1764:ab:hp:first-time-visits:var-c'
+                }
+            }
+
+            _satellite.track('genericTestingImpressionIDWorkaround');
+            homePageCta();
+
+            if (navigator.userAgent.match(/Android/i)|| navigator.userAgent.match(/webOS/i)|| navigator.userAgent.match(/iPhone/i)|| navigator.userAgent.match(/iPad/i)|| navigator.userAgent.match(/iPod/i)|| navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
+                console.log('mobile detected')
+                homePageCtaMobile()
+         } 
+
+        })
+
+
+
+
+        function homePageCta() {
+    let ctaPrimary = document.querySelectorAll('.cta-pill-white');
+    let ctaSecondary = document.querySelectorAll('.cta-pill-ghost');
+
+    if (ctaPrimary.length && ctaPrimary!== null && ctaPrimary!== undefined){
+        // Mach-e
+        ctaPrimary[1].innerText = "Learn More";
+        ctaPrimary[1].href = "https://www.ford.ie/cars/mustang-mach-e";
+        // Kuga
+        ctaPrimary[3].innerText = "Learn More";
+        ctaPrimary[3].href = "https://www.ford.ie/cars/kuga";
+        // Puma
+        ctaPrimary[5].innerText = "Learn More";
+        ctaPrimary[5].href = "https://www.ford.ie/cars/puma";
+    }
+ 
+        
+}
+function homePageCtaMobile() {
+    let ctaPrimary = document.querySelectorAll('.cta-pill-white');
+    if (ctaPrimary.length && ctaPrimary!== null && ctaPrimary!== undefined){
+        // Mach-e
+        ctaPrimary[2].innerText = "Learn More";
+        ctaPrimary[2].href = "https://www.ford.ie/cars/mustang-mach-e";
+        // Kuga
+        ctaPrimary[4].innerText = "Learn More";
+        ctaPrimary[4].href = "https://www.ford.ie/cars/kuga";
+        // Puma
+        ctaPrimary[6].innerText = "Learn More";
+        ctaPrimary[6].href = "https://www.ford.ie/cars/puma";
+    }
+ 
+}
+
+    
+</script>

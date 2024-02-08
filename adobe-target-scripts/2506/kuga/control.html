@@ -1,0 +1,41 @@
+<script>
+
+    console.log('OT-2506')
+
+
+    var con = [];
+    var colorComponent = setInterval(() => {
+        
+        con = document.querySelectorAll('.threesixtyColouriser img')
+        componentFound();
+
+    }, 250)
+
+    function componentFound() {
+        if (con !== null && con.length > 0) {
+            clearInterval(colorComponent);
+            
+            var key = JSON.parse(localStorage.getItem('car_config_2506')).car_name;
+            key = key.includes("Mustang") ? key.replace('Mustang', '').trim() : key
+            if (window.location.href.toLocaleLowerCase().indexOf(key.toLocaleLowerCase()) > 0){
+                setTimeout(()=>{
+                
+             window.targetCampaign = window.targetCampaign || {
+                page: {
+                    campaignName: 'tt:nwp:opt-2506:ab:vhp:interested-warm:control'
+                }
+            }
+
+            _satellite.track('genericTestingImpressionIDWorkaround');
+            },1000)
+           
+           
+
+
+        }
+
+    }
+}
+
+
+</script>

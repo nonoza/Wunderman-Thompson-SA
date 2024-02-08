@@ -1,0 +1,64 @@
+<script>
+  window.addEventListener('load',()=>{
+      console.log("OT-2147 || CHALLENGER-D ")
+
+    checkParentElement();   
+    let closeX = document.querySelector('a.reservation-close-button__link');
+    //console.log(closeX);
+    closeX.addEventListener('click',()=>{
+        window.targetCampaign = window.targetCampaign || {
+                    page: {
+                        campaignName: 'tt:nwp:opt-2147:ab:vhp:add-kmi:var-d'
+                    }
+                }
+
+                _satellite.track('genericTestingImpressionIDWorkaround'); 
+    })        
+  })
+
+  function checkParentElement(){
+    var newContent = `<p>La création d’un compte Ford vous permettra d’accéder à vos commandes et à tous nos services Ford:</p>
+<p>
+<ul>
+    <li>Suivi de vos commandes en ligne, gestion de vos véhicules et financements</li>
+    <li>Accès aux manuels du conducteur, informations de garantie et historiques d’entretiens</li>
+    <li>Gestion de vos services connectés et abonnements, mise à jour de votre véhicule et alertes de sécurité</li>
+</ul>
+</p>
+<p>Vous hésitez encore ? Cliquez ci-dessous pour recevoir les dernières actualités sur le nouveau Ford Explorer 100% électrique</p>
+`;
+      let parentElemnt = document.querySelectorAll('.main-content-wrapper');
+      console.log(parentElemnt[0]);
+      let div = document.createElement('div');
+      div.classList.add('text');
+      div.id = "new-content";
+      let p = document.createElement('p');
+      div.appendChild(p);
+      p.innerHTML = newContent;
+      p.id = "text"
+      let a = document.createElement('a');
+      a.href = "/content/overlays/wizard-overlays/kmi-electric-explorer"
+      a.classList.add('reservation-cta__link--primary');
+      let span = document.createElement('span');
+      a.appendChild(span)
+      span.classList.add('reservation-cta__text');
+      span.textContent = "Tenez-moi informé(e)";
+      a.setAttribute('target', '_blank');
+      div.appendChild(a);
+      if(parentElemnt[0] !== null && parentElemnt[0] !== undefined) {
+          parentElemnt[0].appendChild(div);
+      }
+     
+      
+  }
+</script>
+<style>
+  div#new-content {
+    margin-top: 40px;
+}
+#text p {
+    font-size: 0.95rem;
+    letter-spacing: .4px;
+    line-height: 1.9;
+    }
+</style>

@@ -1,0 +1,31 @@
+<script>
+    window.addEventListener("load", function () {
+        console.log("OT-2172 Challenger B")
+        window.targetCampaign = window.targetCampaign || {
+            page: {
+                campaignName: 'tt:nwp:opt-2172:ab:hp:model-display:var-b'
+            }
+        }
+    
+        _satellite.track('genericTestingImpressionIDWorkaround');
+        var snippets = [];
+     
+        var findSnippets = setInterval(function () {
+            snippets = document.querySelectorAll('.snippet');
+            
+            SnippetFound();
+           
+        }, 10);
+
+        function SnippetFound() {
+            if (snippets !== null && snippets !== undefined  && snippets.length > 0) {
+               //clearInterval(findSnippets);
+                snippets[0].children[0].closest('.snippet').after(snippets[5].children[0].closest('.snippet'))
+               
+                 
+                
+            }
+        }
+
+    });
+</script>

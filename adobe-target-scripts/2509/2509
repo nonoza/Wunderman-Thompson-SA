@@ -1,0 +1,86 @@
+<script>
+    window.addEventListener('load', () => {
+        var isRunning;
+        console.log('OT-1588')
+
+        function videoChange() {
+ setTimeout(function(){
+            let copy = "";
+            let headerBillboard = document.querySelectorAll('.billboard-inner');
+            let target_billboard = [...headerBillboard].filter(node => node.innerText.includes('NEW FORD KUGA\nLOADED WITH MORE\n\nExplore'));
+            console.log('p tags >> ',target_billboard)
+            target_billboard.forEach(el => {
+          
+                el.innerHTML = copy = el.innerHTML.replace('\n            \n    \n\n    \n\n    <div class="component-content " data-lazy-loading-enabled="">\n        \n        \n\n        \n        \n    \n        \n        <picture>\n            \n                <source srcset="/content/dam/guxeu/rhd/central/home/billboard/2023/ford-kuga-eu-Homepage%20B-21x9-2160x925-billboard-green.jpg.renditions.extra-large.jpeg" media="(min-width: 1200px)">\n            \n                <source srcset="/content/dam/guxeu/rhd/central/home/billboard/2023/ford-kuga-eu-Homepage%20B-21x9-2160x925-billboard-green.jpg.renditions.large.jpeg" media="(min-width: 992px)">\n            \n                <source srcset="/content/dam/guxeu/rhd/central/home/billboard/2023/ford-kuga-eu-Homepage%20B-21x9-2160x925-billboard-green.jpg.renditions.medium.jpeg" media="(min-width: 768px)">\n            \n                <source srcset="/content/dam/guxeu/rhd/central/home/billboard/2023/ford-kuga-eu-Homepage%20B-21x9-2160x925-billboard-green.jpg.renditions.small.jpeg" media="(min-width: 480px)">\n            \n                <source srcset="/content/dam/guxeu/rhd/central/home/billboard/2023/ford-kuga-eu-Homepage%20B-21x9-2160x925-billboard-green.jpg.renditions.extra-small.jpeg" media="(min-width: 0px)">\n            \n            \n            <img src="/content/dam/guxeu/rhd/central/home/billboard/2023/ford-kuga-eu-Homepage%20B-21x9-2160x925-billboard-green.jpg.renditions.original.png" alt="Green Kuga on the road" draggable="false" title="Green Kuga on the road" class="completed">\n        </picture>\n    \n\n\n        \n    </div>\n\n\n\n\n\n\n\n\n            <div class="billboard-paragraph">\n                <div>\n\n    \n        \n            <div class="richtext richtext-white hidden-mobile richtext-billboard-heading initialized-richtextBEV initialized-richtext" data-guxacc-applied-styles="richtext-white hidden-mobile richtext-billboard-heading" data-analytics-content-type="billboard">\n                \n\t\n\n\n\t<div class="richtext-content " data-analytics-downloads="[]" data-analytics-nameplates="[]" data-analytics-content-type="billboard">\n\t\t\n\t\t<h2>NEW FORD <strong>KUGA</strong></h2>\n\n<h3>LOADED WITH MORE</h3>\n\n<p><a class="cta-pill cta-pill-white initialized-anchor initialized-contextualLinks" href="/cars/new-kuga-phev" data-acc-context-type="none" data-analytics-link-type="cta" data-analytics-direct-call-rule="moduleInternalCtaClick" data-analytics-cta-name="view vehicle">Explore</a></p>\n\n\n\n\t</div>\n\n\n\n\n\n\n\n    \n\n\n\n            </div>\n        \n            <div class="richtext richtext-white hidden-desktop richtext-billboard-heading initialized-richtextBEV initialized-richtext" data-guxacc-applied-styles="richtext-white hidden-desktop richtext-billboard-heading" data-analytics-content-type="billboard">\n                \n\t\n\n\n\t<div class="richtext-content " data-analytics-downloads="[]" data-analytics-nameplates="[]" data-analytics-content-type="billboard">\n\t\t\n\t\t<h2>NEW FORD <b>KUGA</b></h2>\n\n<p><a class="cta-pill cta-pill-white initialized-anchor initialized-contextualLinks" href="/cars/new-kuga-phev" data-acc-context-type="none" data-analytics-link-type="cta" data-analytics-direct-call-rule="moduleInternalCtaClick" data-analytics-cta-name="view vehicle">Explore</a></p>\n\n\n\n\t</div>\n\n\n\n\n\n\n\n    \n\n\n\n            </div>\n        \n\n        \n    \n\n    \n\n\n</div>\n            </div>\n            <a class="billboard-link-layer initialized-anchor initialized-contextualLinks" href="/cars/new-kuga-phev" tabindex="-1" data-acc-context-type="none" data-context-type="none" data-analytics-direct-call-rule="moduleInternalCtaClick" data-analytics-link-type="cta" data-analytics-cta-name="view vehicle"></a>\n', `<div class="heroVideo ">
+
+
+
+    <style>
+        .nextgen-hero-video video {
+            height: 100vh;
+            object-fit: cover;
+            width: 100%;
+        }
+    </style>
+
+    <div class="nextgen-hero-video theme-light initialized-nextgen-hero-video">
+        <div id="vjs_video_3"
+            data-desktop-video="https://www.ford.eu/videos/guxeu/central/cars/kuga/mca-reveal/hero/desktop/stream.mpd"
+            data-mobile-video="https://www.ford.eu/videos/guxeu/central/cars/kuga/mca-reveal/hero/mobile/master.m3u8"
+            data-desktop-poster="/content/dam/guxeu/rhd/central/cars/2023-kuga/dse/billboard/ford-kuga-eu-Kuga_MCA_2023_DSE_15s_Main-16x9-1440x810.jpg"
+            data-mobile-poster="/content/dam/guxeu/rhd/central/cars/2023-kuga/dse/billboard/ford-kuga-eu-Kuga_MCA_2023_DSE_15s_Main-9x16-780x1385.jpg"
+            preload="metadata" aria-label="Video Player" loop="true" muted="true"
+            class="nextgen-video-js vjs-controls-disabled vjs-workinghover vjs-v7 vjs-has-started vjs_video_3-dimensions vjs-playing vjs-user-inactive"
+            tabindex="-1" lang="en" translate="no" role="region"><video class="vjs-tech" muted="muted" loop=""
+                aria-label="Hero video showing new All-Electric Explorer driving" preload="metadata"
+                data-mobile-poster="/content/dam/guxeu/rhd/central/cars/2023-kuga/dse/billboard/ford-kuga-eu-Kuga_MCA_2023_DSE_15s_Main-9x16-780x1385.jpg"
+                data-desktop-poster="/content/dam/guxeu/rhd/central/cars/2023-kuga/dse/billboard/ford-kuga-eu-Kuga_MCA_2023_DSE_15s_Main-16x9-1440x810.jpg"
+                data-mobile-video="https://www.ford.eu/videos/guxeu/central/cars/kuga/mca-reveal/hero/mobile/master.m3u8"
+                data-desktop-video="https://www.ford.eu/videos/guxeu/central/cars/kuga/mca-reveal/hero/desktop/stream.mpd"
+                id="vjs_video_3_html5_api" tabindex="-1"
+                poster="/content/dam/guxeu/rhd/central/cars/2023-kuga/dse/billboard/ford-kuga-eu-Kuga_MCA_2023_DSE_15s_Main-16x9-1440x810.jpg"
+                playsinline="playsinline" autoplay=""
+                src="blob:https://www.ford.co.uk/2b4ef5f6-9006-4048-a4ca-e096ed7b264f">
+            </video></div>
+        <div class="hero-video-text">
+            <div class="hero-text1 show">
+                <h1>New <b>Ford Kuga<sup>®</sup></b></h1>
+
+
+
+            </div>
+            <div class="hero-text2 show">
+                <p><b>Loaded With More</b></p>
+
+
+
+            </div>
+            <div class="hero-text3 show">
+                <p><a class="nextgen-primary-cta initialized-anchor initialized-contextualLinks"
+                        data-acc-context-type="buildAndPrice"
+                        href="/shop/build-your-ford/ngc2/ice2/model?catalogId=WAEGB-CTD-2024-KugaGBR202450"
+                        data-analytics-link-type="cta" data-analytics-direct-call-rule="moduleInternalCtaClick"
+                        data-analytics-cta-name="build price"
+                        data-analytics-content-sub-type-uid="2bd59bd8-72fd-4e78-a8fc-bfbfe25405e3"
+                        data-analytics-content-sub-type="billboard">Configure</a></p>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>`);
+         
+    
+            })
+        },250)
+        }
+          
+     
+      }, false);
+
+    </script>
+ 

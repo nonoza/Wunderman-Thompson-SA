@@ -1,0 +1,56 @@
+<script>
+    window.addEventListener('load',()=>{
+        console.log("OT-2147 || CHALLENGER-B ")
+        
+                checkParentElement();  
+
+    let closeX = document.querySelector('a.reservation-close-button__link');
+    console.log(closeX);
+    closeX.addEventListener('click',()=>{
+        window.targetCampaign = window.targetCampaign || {
+                    page: {
+                        campaignName: 'tt:nwp:opt-2147:ab:vhp:add-kmi:var-b'
+                    }
+                }
+
+                _satellite.track('genericTestingImpressionIDWorkaround'); 
+    })
+                    
+    })
+
+    function checkParentElement(){
+        let parentElemnt = document.querySelectorAll('.main-content-wrapper');
+        console.log(parentElemnt[0]);
+        let div = document.createElement('div');
+        div.classList.add('text');
+        div.id = "text";
+        let p = document.createElement('p');
+        div.appendChild(p);
+        p.textContent = "Vous hésitez encore ? Cliquez ci-dessous pour recevoir les dernières actualités sur le nouveau Ford Explorer 100% électrique";
+        let a = document.createElement('a');
+        a.href = "/content/overlays/wizard-overlays/kmi-electric-explorer"
+        a.classList.add('reservation-cta__link--primary');
+        let span = document.createElement('span');
+        a.appendChild(span)
+        span.classList.add('reservation-cta__text');
+        span.textContent = "Tenez-moi informé(e)";
+        a.setAttribute('target', '_blank');
+        div.appendChild(a);
+        if(parentElemnt[0] !== null && parentElemnt[0] !== undefined) {
+            parentElemnt[0].appendChild(div);
+        }
+       
+        
+    }
+ 
+   
+   
+ 
+</script>
+<style>
+    #text p {
+    font-size: 0.95rem;
+    letter-spacing: .4px;
+    line-height: 1.9;
+    }
+</style>

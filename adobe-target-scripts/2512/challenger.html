@@ -1,0 +1,52 @@
+<script>
+
+console.log('OT-2512-NPP Mach-E Finance CTA Banner');
+let domainCheck = 'ford.de/fahrzeuge/ford-mustang-mach-e'; 
+
+//change this to the domain you are working on, e.g. ford.ie or ford.co.uk
+//Adding this to prevent accidental leaks to other markets
+    if (window.location.href.indexOf(domainCheck) >= 0) {
+        createSecondBtn()
+    }
+
+function createSecondBtn() {
+    //find the parent
+    let buttonParent = document.querySelectorAll('.hero-text3 p');
+    //create a new button
+    let secondBtn = document.createElement('a')
+    secondBtn.href = "https://www.ford.de/fahrzeuge/ford-mustang-mach-e/aktionen-angebote/privatkunden.showroom ";
+    secondBtn.classList.add('cta-pill','cta-pill-ghost','new-cta');
+    secondBtn.textContent = "Leasingangebot";
+    buttonParent[0].appendChild(secondBtn);
+     
+    window.targetCampaign = window.targetCampaign || {
+                page: {
+                    campaignName: 'tt:nwp:opt-2512:AB:NPP:NPP Mach-E Finance CTA Banner:Challenger'
+                }
+            }
+
+            _satellite.track('genericTestingImpressionIDWorkaround');
+    
+    }
+
+</script>
+
+<style>
+a.new-cta {
+    max-width: 342px;
+    padding: 18px 10px!important;
+    height: 47px;
+    position: relative;
+    top: 17px;
+    display: block;
+    width: auto;
+    margin: 0 auto;
+}
+.nextgen-hero-video .hero-video-text .hero-text3 {
+    bottom: -109px!important;
+}
+.nextgen-hero-video .hero-video-text {
+    bottom: 162px!important;
+}
+</style>
+

@@ -1,0 +1,57 @@
+<script>
+window.addEventListener('load',()=>{
+    console.log('OT-2506')
+
+    var con;
+var cl;
+
+var colorComponent = setInterval(() => {
+    console.log('Searching for components');
+    con = document.querySelectorAll(".swiper-slide img");
+    cl = document.querySelectorAll('._colouriserControlListItem_1c6f3_25 a span img');
+
+    console.log('Con elements:', con);
+    console.log('Cl elements:', cl);
+
+    if (con.length > 0 && cl.length > 0) {
+        clearInterval(colorComponent);
+        componentFound();
+    }
+}, 250);
+
+function componentFound() {
+    var selectedColor = localStorage.getItem('selectedColor');
+    var key = JSON.parse(localStorage.getItem('car_config_2506')).car_name;
+    key = key.includes("Mustang") ? key.replace('Mustang', '').trim() : key;
+
+    if (window.location.href.toLowerCase().indexOf(key.toLowerCase()) > 0) {
+        setTimeout(() => {
+            var newImage = JSON.parse(localStorage.getItem('car_config_2506')).image;
+            console.log("image", con[0].src);
+            con[0].src = newImage;
+
+            for (let i = 1; i < cl.length; i++) {
+                console.log('Element text:', cl[i].src);
+                if (cl[i].src.includes(selectedColor)) {
+                    cl[i].click();
+                    // console.log(cl[i]);
+                }
+            }
+
+            window.targetCampaign = window.targetCampaign || {
+                page: {
+                    campaignName: 'tt:nwp:opt-2506:ab:vhp:interested-warm:var-b'
+                }
+            }
+
+            _satellite.track('genericTestingImpressionIDWorkaround');
+        }, 1000);
+    }
+}
+
+
+
+})
+   
+
+</script>

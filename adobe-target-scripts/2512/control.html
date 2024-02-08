@@ -1,0 +1,23 @@
+<script>
+
+console.log('OT-2512-NPP Mach-E Finance CTA Banner | Control');
+let domainCheck = 'ford.de/fahrzeuge/ford-mustang-mach-e'; 
+
+//change this to the domain you are working on, e.g. ford.ie or ford.co.uk
+//Adding this to prevent accidental leaks to other markets
+    if (window.location.href.indexOf(domainCheck) >= 0) {
+        window.targetCampaign = window.targetCampaign || {
+                page: {
+                    campaignName: 'tt:nwp:opt-2512:AB:NPP:NPP Mach-E Finance CTA Banner:Control'
+                }
+            }
+
+            _satellite.track('genericTestingImpressionIDWorkaround');
+    }
+
+
+
+</script>
+
+
+

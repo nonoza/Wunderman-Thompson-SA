@@ -1,0 +1,253 @@
+<script>
+var currentURL = window.location.href;
+if (currentURL.indexOf("WAEFX-CTD-2024-KugaFRA202450") !== -1) {
+    console.log('OT-2506 New Kuga |DC');
+    var enableLogs = true;
+    var _log = console.log;
+    console.log = function (logMsg) {
+        if (enableLogs) {
+
+            _log.apply(console, arguments);
+        }
+    }
+    //Added because we sometimes use the console.dir function to display vars
+    var _dir = console.dir;
+    console.dir = function (dirMsg) {
+        if (enableLogs) {
+            _dir.apply(console, arguments);
+        }
+    }
+
+    enableLogs = true;
+
+    var _locale = "fr_FR"
+    var nameplate, theColour, selectedCode, redirUrl, splitPageName, mobile_color, hexVal, imgUrl = null;
+    var parseRegExp = /catalogID\=([^\/]+)/i;
+    var parseRegNoCatalogIDExp = /\?[^\#\/]+/i;
+
+
+
+
+
+    function isNull(obj) {
+        return obj == undefined || obj == null || obj == "";
+    }
+
+
+    var waitForIt = setInterval(function () {
+
+        if (window.location.href.indexOf('summary') >= 0) {
+            var colorPicker = {
+                PN4LQ: 'https://www.gpas-cache.ford.com/colourchip/pn4lq.jpg',
+                PN3GZ: 'https://www.gpas-cache.ford.com/colourchip/pn3gz.jpg',
+                PN4GM: 'https://www.gpas-cache.ford.com/colourchip/pn4gm.jpg',
+                PN4HS: 'https://www.gpas-cache.ford.com/colourchip/pn4hs.jpg',
+                PN4FZ: 'https://www.gpas-cache.ford.com/colourchip/pn4fz.jpg',
+                PN4HQ: 'https://www.gpas-cache.ford.com/colourchip/pn4hq.jpg',
+            }
+            for (let prop in colorPicker) {
+                if (window.location.href.includes(prop)) {
+                    console.log('Property "popr" found. Stopping the loop.');
+                    localStorage.setItem('selectedColor',colorPicker[prop])
+                    break; // Exit the loop
+                }
+            }
+                if (!isNull(window.exportedData) && !isNull(window.exportedData.dynamicData)) {
+                    console.log('Dynamic Data Found')
+                    getDetails(false);
+                } else {
+                    extractData();
+                }
+
+                clearInterval(waitForIt);
+            }
+
+        }, 500)
+
+
+    function getDetails(carObj) {
+
+
+        var returnedObj;
+
+        if (!isNull(window.exportedData) && !isNull(window.exportedData.dynamicData)) {
+
+            //NEW CODE
+            //Now we use the code below
+
+            //We need to get the key value because the key is linked to a dynamic value (i.e. we cannot use a numeric index)
+            let seriesKey = Object.keys(window.exportedData.dynamicData.vehicleCollection.selectedByMarketing.series)[2];
+            let driveKey = Object.keys(window.exportedData.dynamicData.vehicleCollection.selectedByMarketing.drive)[2];
+
+            //window.exportedData.dynamicData.vehicleCollection is the base var we would be working with
+
+            returnedObj = {
+                'image': window.exportedData.dynamicData.vehicleCollection.images.exterior[0].urls[0],
+                'price_normal': window.exportedData.dynamicData.vehicleCollection.price.finalPrice.recommendedOTRTotalPrice,
+                'price_promo': window.exportedData.dynamicData.vehicleCollection.price.finalPrice.recommendedOTRPromotionalPrice,
+                'car_name': window.exportedData.dynamicData.vehicleCollection.props['nameplate-label'],
+                'ngc_summary_link': window.location.href,
+                'ngc_inventory_showroom_link': 'https://www.ford.fr/achat-voiture/buy-online/inventory/pv#config=' + window.exportedData.dynamicData.vehicleCollection.props['nameplate-label'],
+                'disclaimers': getDisclaimers(window.exportedData.dynamicData.vehicleCollection.price.finalPrice.recommendedOTRTotalPrice, window.exportedData.dynamicData.vehicleCollection.price.finalPrice.recommendedOTRPromotionalPrice)
+            }
+
+        } else {
+
+            //OLD CODE
+            //carObj was being passed into this method previously
+            returnedObj = {
+                'image': carObj.data.images.exterior[0].urls[0],
+                'price_normal': carObj.data.price.finalPrice.recommendedOTRTotalPrice,
+                'price_promo': carObj.data.price.finalPrice.recommendedOTRPromotionalPrice,
+                'car_name': carObj.data.props["nameplate-label"],
+                'ngc_summary_link': window.location.href,
+                'ngc_inventory_showroom_link': 'https://www.ford.fr/achat-voiture/buy-online/inventory/pv#config=' + carObj.data.props["nameplate-label"],
+                'disclaimers': getDisclaimers(carObj.data.price.finalPrice.recommendedOTRTotalPrice, carObj.data.price.finalPrice.recommendedOTRPromotionalPrice)
+            }
+        }
+
+        localStorage.setItem('cart_started_2506', false);
+        localStorage.setItem('ngc_summary_link_2506', window.location.href);
+        localStorage.setItem('car_config_2506', JSON.stringify(returnedObj));
+    }
+
+
+    function getDisclaimers(price_normal, price_promo) {
+        var equalPrices = false;
+        if (price_normal === price_promo) {
+            console.log('Prices are equal')
+            equalPrices = true;
+        }
+
+        var accordions = document.querySelectorAll('div[class^="BottomDisclosure__BottomDisclosureWrapperContent"]');
+        var suffix = document.querySelectorAll('p[class^="MainNavigationHeader__PriceLabel"] > span[class^="Disclaimer__DisclaimerEnumeration"]');
+        var disclaimers = [];
+        suffix.forEach(function (v, k) {
+            accordions.forEach(function (a, b) {
+                console.log('a text ' + a.textContent);
+                console.log('v text ' + v.textContent);
+                if (a.textContent.includes('[' + v.textContent.trim() + ']')) {
+                    console.log('Match Found');
+                    if (equalPrices && disclaimers.length == 0) {
+                        console.log('pushing ' + a.textContent + ' but skipping next due to equal price');
+                        disclaimers.push([v.textContent.trim(), a.textContent]);
+                    } else if (!equalPrices) {
+                        console.log('pushing ' + a.textContent);
+                        disclaimers.push([v.textContent.trim(), a.textContent]);
+                    }
+                }
+            })
+        });
+
+        return disclaimers;
+
+    }
+
+
+    function isNull(obj) {
+        return obj == undefined || obj == null || obj == "";
+    }
+
+
+    function getCarIDs() {
+        var parsedCurrentURL = parseRegExp.exec(location.href);
+
+        var id, code, features = "";
+
+        if (parsedCurrentURL == null)
+            return undefined;
+        else if (parsedCurrentURL.length == 0)
+            return undefined;
+
+        var tempList = parsedCurrentURL[1].split('&');
+
+        for (var i = 0; i < tempList.length; i++) {
+            var key_value = tempList[i].split('=');
+            if (key_value.length == 1) {
+                id = tempList[i];
+            } else if (key_value[0] == "series") {
+                code = key_value[1];
+            } else {
+                features += features == "" ? key_value[1] : "," + key_value[1];
+            }
+        }
+
+        return {
+            id: id,
+            code: code,
+            features: features
+        };
+    }
+
+
+    function extractData() {
+        IDs = getCarIDs();
+        if (isNull(IDs))
+            return callback("Information not set");
+
+        var theLine = IDs.id;
+
+        if (IDs.code != undefined && IDs.code != "") {
+            theLine += "~" + IDs.code;
+        }
+
+        if (IDs.features != undefined && IDs.features != "") {
+            theLine += (theLine.includes("~") ? "," : "~") + IDs.features.replaceAll("included", "");
+        }
+        console.log(isNull(theLine));
+        if (isNull(theLine))
+            return callback("Information not set");
+
+        var key = [theLine].join("");
+
+        var data = sessionStorage.getItem(key);
+
+        if (data != null)
+            return callback(undefined, JSON.parse(data), key);
+
+        var url = [
+            "https://www.servicescache.ford.com/api",
+            "/vehicleModel/",
+            "v1",
+            "/load?locale=",
+            _locale,
+            "&retrieve=images,specs,featuresMkt,selectedMkt,featureImages,featureSpecs,keyFeatures,keyFeaturesModel,uscCodes,prices,featurePrices&namedConfig=",
+            "default",
+            "&config=",
+            theLine
+        ].join("");
+
+
+        console.log(url);
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == XMLHttpRequest.DONE) { // XMLHttpRequest.DONE == 4
+                if (xmlhttp.status == 200) {
+                    console.dir(xmlhttp.responseText);
+                    getDetails(JSON.parse(xmlhttp.responseText));
+                }
+                else if (xmlhttp.status == 400) {
+                    //alert('There was an error 400');
+                    console.log('error - 400')
+                }
+                else {
+                    console.log('error - ' + xmlhttp.status);
+                }
+            }
+        };
+
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+
+        //getDetails(window.exportedData.dy)
+
+
+    }
+
+  
+
+}
+    
+
+</script>

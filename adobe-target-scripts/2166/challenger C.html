@@ -1,0 +1,72 @@
+<script>
+    console.log("OT-2166-challenger c");
+
+    var waitForJquery = setInterval(function () {
+        console.log('Checking for jQuery')
+        if (window.jQuery) {
+            // jQuery is loaded
+            $ = jQuery;
+            clearInterval(waitForJquery);
+            fireImpressionId();
+            addNewStrip();
+
+            // setTimeout(function () {
+            //     setOnClick();
+            //     $('body').click();
+            // }, 750);
+        }
+    }, 100);
+
+    
+    function addNewStrip() {
+  //Get the parentElement 
+   let parentElement = document.querySelectorAll('.main-header');
+ 
+   console.log(parentElement[0])
+   //Check if the parentElement is not null or undefined
+   //If the parentElelemt is null or undefine, still checks
+   if(parentElement[0] !=null && parentElement[0] != undefined) {
+      //If the parentElement is not null or undefined , Add the banner.
+      var newStripBanner = `<div class="strip-banner">
+      <div class="strip-banner-content">
+      <div class="richtext strip-banner-white-v4 initialized-richtextBEV initialized-richtext"
+          data-guxacc-applied-styles="strip-banner-white-v4" data-analytics-content-type="strip banner">
+          <div class="richtext-content " data-analytics-downloads="[]" data-analytics-nameplates="[]"
+              data-analytics-content-type="strip banner">
+
+              <p style="text-align: center;">Nowoczesne, hybrydowe SUV-y Forda dla Firm już od 919 PLN netto/mies.*  <a
+                      data-acc-context-type="none" href="/kupuj-z-fordem/oferty/promocje/hybrydowe-suvy-forda"
+                      class="link-overlay initialized-anchor initialized-overlay initialized-contextualLinks acc-pd-overlay"
+                      data-analytics-link-type="cta" data-analytics-direct-call-rule="moduleInternalCtaClick"
+                      data-analytics-cta-name="test drive" role="button"
+                      data-id="link-overlay-contentoverlayswizardoverlaystdrvehicleCodeCF701-2328425502181" style = "text-decoration:underline;">Sprawdź&#62;&#62;</a></p>
+
+          </div>
+      </div>
+  </div>
+</div>`
+let div= document.createElement('div');
+div.classList.add('newStrip');
+div.innerHTML = newStripBanner;
+parentElement[0].appendChild(div);
+
+
+   }
+   
+  }
+
+
+    function fireImpressionId() {
+        window.targetCampaign = {
+    page: {
+      campaignName: 'tt:nwp:opt-2166:ab:inv:web-strategy:var-c'
+ 
+    }
+  }
+ 
+  _satellite.track('genericTestingImpressionIDWorkaround');
+  console.log('done firing -- first pass');
+    }
+
+  
+</script>

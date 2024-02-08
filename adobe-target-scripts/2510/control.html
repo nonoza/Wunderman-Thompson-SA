@@ -1,0 +1,17 @@
+<script>
+    console.log('2510');
+
+  
+
+    function impressionID() {
+      window.targetCampaign = window.targetCampaign || {
+                page: {
+                    campaignName: 'tt:nwp:opt-2510:ab:vsr:CTA-Hover:Control'
+                }
+            }
+
+            _satellite.track('genericTestingImpressionIDWorkaround');
+    }
+
+    impressionID();
+    </script>

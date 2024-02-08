@@ -1,0 +1,29 @@
+<script >
+    console.log('OT-2489')
+    let navContainer = document.querySelectorAll('#gux3 > div.gux3-secondaryNavigationReference > div > div.secondaryNavigationInner.bar-white > div > div > div.navigation-horizontal.columns.collapsed.large-4 > div > ul');
+    
+
+    function addServicePlanCta() {
+    let newLink = document.createElement('a');
+    let parentEl = document.createElement('li');
+    
+    newLink.href = "#";
+    newLink.onclick = linkTrigger; // Assign the function directly
+    newLink.textContent = "Service Plan";
+    newLink.classList.add('cta-pill', 'cta-pill-ghost');
+    
+    parentEl.appendChild(newLink);
+    navContainer[0].prepend(parentEl);
+}
+
+function linkTrigger() {
+    let accBtn = document.querySelectorAll('a.accordion-trigger.accordion-trigger-inline.content-right');
+    
+    if (accBtn.length > 0) {
+        accBtn[0].click();
+    }
+}
+
+    addServicePlanCta();
+    linkTrigger()
+</script>

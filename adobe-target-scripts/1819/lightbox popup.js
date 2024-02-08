@@ -1,0 +1,430 @@
+<script>
+    function validDisplayPage(){
+      var excluded_url = ['ford-account','sso.ci.ford','dashboard','login','registration','authsvc','fordpass','tous-modeles','fourgons-et-pick-up','utilitaires','financer-et-assurer']
+      for(let i = 0 ; i < excluded_url.length;i++){
+          if(window.location.href.toLocaleLowerCase().includes(excluded_url[i])){
+              return false;
+          }
+      }
+      return true;
+  }
+
+  
+  if(!/book-a-service/i.test(window.location.href) && validDisplayPage()){
+
+  console.log('OT-1819 | AT LIGHTBOX');
+  var MBOXName = 'MBOX_1819_Main_CTA_CTR';
+  var MBOXNameClose = 'MBOX_1819_Close_CTA_CTR';
+  var enableLogs = false;
+  var _log = console.log;
+  console.log = function (logMsg) {
+      if (enableLogs) {
+
+          _log.apply(console, arguments);
+      }
+  }
+  //Added because we sometimes use the console.dir function to display vars
+  var _dir = console.dir;
+  console.dir = function (dirMsg) {
+      if (enableLogs) {
+          _dir.apply(console, arguments);
+      }
+  }
+
+
+  var skipExecution = false;
+  // Lightbox
+  var att_config = {
+      // =========================== USER DEFINED CONFIGURATION ===========================
+      // Use the main title to grab attention. Try to keep it under 40 characters!
+      title: "Your appointment request is still waiting for you.",
+      // The sub title should entice your customer. Keep it short and sweet under 80 characters.
+      subtitle: "Booking a service online is quick and easy. Would you like to book now?",
+      // Customize the link that closes the lightbox. Keep it under 30 characters.
+      declineText: "No, Thanks",
+      // Host your image and place a link to it here. The image should be clear and concise.
+      // Try to keep the dimensions to 400px wide x 500px high.
+      imageUrl: "/content/dam/guxeu/rhd/central/sandbox/training/billboard/ford-pop_up_banner-eu-GettyImages-3x2-1800x1201-bb-man-with-a-labtop-on-a-sofa.jpg",
+      // The button text should provide clear instructions. Keep it under 30 characters for maximum impact.
+      buttonText: "Book Now",
+      // Once the customer has clicked, where do you want to redirect them?
+      buttonLink: "https://www.ford.ie/support/book-a-service/dealer-step",
+      // Time delay before the lightbox is shown, in seconds. Put a 0 to show the lightbox immediately, false to never show.
+      delay: 10,
+      // Set to true to close lightbox when the area outside the lightbox is clicked.
+      clickBackgroundToClose: false,
+      // Min time to wait before showing LB again. (Seconds)
+      timeout: 900,
+      // Hard limit to prevent LB from displaying too often
+      limit: 2,
+      // Disclaimer text to display in the disclaimer overlay
+      disclaimer: ""
+      // =========================== END USER DEFINED CONFIGURATION ===========================
+  };
+
+//   function getDisclaimerOverlay() {
+//       let disclaimerText = null != att_config.disclaimer ? att_config.disclaimer : undefined;
+//       if (disclaimerText) {
+
+//           let disclaimerPopupContainer = document.createElement('div');
+//           disclaimerPopupContainer.classList = 'disclaimerPopup';
+
+//           let disclaimerCloseSpan = document.createElement('span');
+//           disclaimerCloseSpan.innerHTML = '<span>X</span>';
+//           disclaimerCloseSpan.classList = 'closeSpanX';
+//           disclaimerCloseSpan.addEventListener('click', function (e) {
+//               closeDisclaimerOverlay(e);
+//           });
+
+//           let disclaimerContentSection = document.createElement('div');
+//           disclaimerContentSection.classList = 'disclaimerContent';
+//           disclaimerContentSection.textContent = disclaimerText;
+//           disclaimerPopupContainer.appendChild(disclaimerCloseSpan);
+//           disclaimerPopupContainer.appendChild(disclaimerContentSection);
+
+//           document.body.appendChild(disclaimerPopupContainer);
+
+//       } else {
+//           console.log('disclaimer needs to be set first');
+//       }
+//   }
+
+  function closeDisclaimerOverlay(e) {
+      console.log('closing disclaimer overlay');
+      e.target.parentElement.parentElement.remove();
+  }
+
+  function getCurrentTimestamp() {
+      return Math.floor(Date.now() / 1000);
+  }
+
+  function compareTimestamps() {
+      let limits = getLimits();
+      var timeDifference = getCurrentTimestamp() - limits.popup_last_closed;
+      if (timeDifference > att_config.timeout) {
+          return true;
+      }
+      return false;
+  }
+
+  function checkForAbandoned() {
+
+      let limits = getLimits();
+      if (limits.abondoned === undefined || limits.abondoned === null || limits.abondoned === '') {
+          return false;
+      }
+      return true;
+  }
+
+  function checkForDisplayLimit() {
+      let limits = getLimits();
+      if (limits.popup_display_count <= att_config.limit) {
+          return true;
+      }
+      return false;
+  }
+
+  function getLimits() {
+      return {
+          popup_last_closed: Number("${profile.ie.osb.popup_last_closed}"),
+          popup_display_count: Number("${profile.ie.osb.popup_display_count}"),
+          abondoned: "${profile.ie.obsAbandoned}"
+      }
+  }
+
+
+  if (compareTimestamps() && checkForDisplayLimit() && checkForAbandoned()) {
+      skipExecution = false;
+      console.log('timestamps,limits and abandoned are all fine');
+  } else {
+      if (window.location.href.indexOf('td=1819') > 0) {
+          console.log('debug detected... overriding limits...');
+          skipExecution = false;
+      } else {
+          console.log('gonna have to skip execution');
+          skipExecution = true;
+      }
+  }
+  if (!skipExecution) {
+      (function () {
+          "use strict";
+          var title = null != att_config.title && att_config.title ? att_config.title : "",
+              subtitle = null != att_config.subtitle && att_config.subtitle ? att_config.subtitle : "",
+              buttonText = null != att_config.buttonText && att_config.buttonText ? att_config.buttonText : "",
+              buttonLink = null != att_config.buttonLink && att_config.buttonLink ? att_config.buttonLink : "",
+              declineText = null != att_config.declineText && att_config.declineText ? att_config.declineText : "",
+              template =
+                  '\n<div id="att_lightbox">\n  <div class="att_lightbox_background"></div>\n  <div class="att_popup">\n    <div class="att_lightbox_left">\n    </div>\n    <div class="att_lightbox_right">\n      <div class="att_lightbox_right_contents">\n        <h3 class="att_lightbox_header">' +
+                  title +
+                  '</h3>\n        <p class="att_lightbox_subhheader">' +
+                  subtitle +
+                  '</p>\n        <a href="' +
+                  buttonLink +
+                  '" class="att_lightbox_button" id="att_lightbox_cta" rel="nofollow noopener">' +
+                  buttonText +
+                  '</a>\n        <a id="att_lightbox_close" href="#">' +
+                  declineText +
+                  "</a>\n      </div>\n    </div>\n  </div>\n</div>\n",
+              bgImage = null != att_config.imageUrl && att_config.imageUrl ? "background-image: url(" + att_config.imageUrl + ");" : "",
+              style =
+                  "\n#att_lightbox {\n  display: none;\n  justify-content: center;\n  align-items: center;\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 1000;\n  width: 100vw;\n  height: 100vh;\n  margin: 0;\n  padding: 0;\n}\n.att_lightbox_background {\n  display: block;\n  position: fixed;\n  width: 100vw;\n  height: 100vh;\n  top: 0;\n  left: 0;\n  background-color: black;\n  opacity: 0.75;\n  z-index: 1000;\n  margin: 0;\n  padding: 0;\n}\n.att_popup * {\n  font-family: Helvetica, Arial, sans-serif;\n}\n.att_popup {\n  max-width: 800px;\n  max-height: 500px;\n  width: 100%;\n  height: 100%;\n  margin: 0;\n  padding: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: row;\n  z-index: 1001;\n  border-radius: 1px;\n}\n.att_lightbox_left {\n  max-width: 540px;\n  width: 100%;\n  height: 100%;\n  background-color: white;\n  " +
+                  bgImage +
+                  "\n  background-size: auto 100%;\n  background-position: center;\n}\n.att_lightbox_right {\n  background-color: white;\n  display: block;\n  width: 100%;\n  height: 100%;\n  position: relative;\n}\n.att_lightbox_right_contents {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin: 20px;\n  height: calc(100% - 40px);\n  width: calc(100% - 40px);\n}\n.att_lightbox_header {\n  text-align: center;\n  font-size: 32pt;\n  color: #221E1F;\n  margin: 0;\n  padding: 1rem;\n  line-height: 1.35;\n}\n.att_lightbox_subhheader {\n  font-size: 14pt;\n  text-align: center;\n  color: #221E1F;\n  line-height: 1.35;\n  margin: 20px 30px;\n  padding: 0;\n}\n.att_lightbox_button {\n  height: 42px;\n  width: auto;\n  min-width: 80%;\n  background-color: #4CAF50;\n  color: white;\n  border-radius: 2px;\n  text-decoration: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 11pt;\n  margin: 10px;\n}\n.att_lightbox_button:hover {\n  background-color: #388E3C;\n  text-decoration: none;\n  cursor: pointer;\n}\n.att_lightbox_button:active {\n  background-color: #4CAF50;\n  text-decoration: none;\n  cursor: pointer;\n}\n.att_lightbox_button[disabled=disabled],\n.att_lightbox_button:disabled {\n  background-color: #D8D8D8;\n  text-decoration: none;\n}\n#att_lightbox_close {\n  font-size: 12pt;\n  color: #4A4A4A;\n  text-align: center;\n  text-decoration: none;\n  margin: 10px;\n  font-weight: 300;\n}\n#att_lightbox_close:hover {\n  text-decoration: underline;\n}\n@media (max-width: 801px) {\n  .att_popup {\n    margin: 20px;\n  }\n  .att_lightbox_left {\n    display: none\n  }\n}\n",
+              handlers = function () {
+                  var t = null != att_config.delay && att_config.delay ? att_config.delay : 5;
+                  function n() {
+                      document.getElementById("att_lightbox").style.display = "none";
+                  }
+                  !1 !== att_config.delay &&
+                      setTimeout(function () {
+                          att_config.fired || ((document.getElementById("att_lightbox").style.display = "flex"), (att_config.fired = !0));
+                      }, 1e3 * t),
+                      document.getElementById("att_lightbox_close").addEventListener("click", function (t) {
+                          t.preventDefault(), n();
+                      }),
+                      document.querySelector(".att_lightbox_background").addEventListener("click", function (t) {
+                          att_config.clickBackgroundToClose && (t.preventDefault(), n());
+                      });
+              };
+          injector({ template: template, style: style, handlers: handlers });
+          ("use strict");
+          function injector(e) {
+              var t = null != e.el && e.el ? e.el : document.body,
+                  l = document.createElement("div");
+              e.templateClass && l.classList.add(e.templateClass), (l.innerHTML = null != e.template && e.template ? e.template.replace(/(\r\n\t|\n|\r\t)/gm, "") : ""), t.appendChild(l);
+              var n = document.createElement("style");
+              (n.innerText = null != e.style && e.style ? e.style.replace(/(\r\n\t|\n|\r\t)/gm, "") : ""), document.head.appendChild(n), null != e.handlers && "function" == typeof e.handlers && e.handlers();
+          }
+
+
+        //   //Add Click event to overlay
+        //   document.getElementById('disclaimerLink').addEventListener('click', function () {
+
+        //       console.log('disclaimerLink');
+        //       getDisclaimerOverlay();
+
+        //   });
+
+          function fireImpressionId(DCRCallRule) {
+
+              /*
+                          DCRCallRule values
+              
+                          -> impression-xt-popin
+                          -> cta-click-xt-popin-primary
+                          -> cta-click-xt-popin-secondary
+                          -> genericTestingImpressionIDWorkaround
+              
+              */
+
+              console.log('firing impression id');
+              window.targetCampaign = {
+                  page: {
+                      campaignName: "tt:nwp:opt-1819:xt:osb:osb-abandon-popup", //Change this to your impressionID
+                  },
+              };
+
+              _satellite.track(DCRCallRule);
+          }
+
+          //Attach Events
+          let waitForPopin = setInterval(function () {
+              let lightBox_overlay = document.getElementById('att_lightbox');
+              if (lightBox_overlay !== undefined && lightBox_overlay !== null) {
+                  clearInterval(waitForPopin);
+                  console.log('found the lightbox');
+                  let closeButton = document.getElementById('att_lightbox_close');
+                  let ctaButton = document.getElementById('att_lightbox_cta');
+                  attachEvents(att_lightbox_cta, true);
+                  attachEvents(closeButton, false);
+                  //We don't really need this anymore but let's leave it in for now
+                  //setCookieForImpressionID(0.25, '/', '1819-impressionid-fired', true);
+                  fireImpressionId('impression-xt-popin');
+              }
+
+
+          }, 250);
+
+          //Used to update limits on click of close or CTA
+          function onClose() {
+              console.log('onClose');
+              let limits = getLimits();
+              console.log(limits.popup_last_closed);
+              console.log(limits.popup_display_count);
+              adobe.target.getOffer({
+                  'mbox': MBOXNameClose,
+                  'params': {
+                      'profile.ie.osb.popup_last_closed': getCurrentTimestamp(),
+                      'profile.ie.osb.popup_display_count': ++limits.popup_display_count
+                  },
+                  'success': function (offer) {
+                      adobe.target.applyOffer({
+                          'mbox': MBOXNameClose,
+                          'offer': offer
+                      });
+                  },
+                  'error': function (status, error) {
+                      console.log('Error', status, error);
+                  }
+              });
+          }
+
+          //The proceedMetric allows us to send "cta_clicked:true"
+          function attachEvents(htmlElement, proceedMetric) {
+
+              htmlElement.addEventListener('click', function () {
+                  onClose();
+                  //TODO: Add Tracking Metrics'
+                  if (proceedMetric) {
+                      adobe.target.trackEvent({
+                          'mbox': MBOXName,
+                          'params': {
+                              'Main CTA CTR': 'true'
+                          }
+                      });
+                      //Track primary CTA Clicks
+                      fireImpressionId('cta-click-xt-popin-primary');
+                  } else {
+                      adobe.target.trackEvent({
+                          'mbox': MBOXNameClose,
+                          'params': {
+                              'Close CTA CTR': 'true'
+                          }
+                      });
+                      //Track secondary CTA Clicks
+                      fireImpressionId('cta-click-xt-popin-secondary');
+                  }
+              });
+          }
+
+          function getCookie(name) {
+              function escape(s) { return s.replace(/([.*+?\^$(){}|\[\]\/\\])/g, '\\$1'); }
+              var match = document.cookie.match(RegExp('(?:^|;\\s*)' + escape(name) + '=([^;]*)'));
+              return match ? match[1] : null;
+          }
+
+          function setCookieForImpressionID(expireInHours, path, cookieName, cookieValue) {
+              console.log("setting cookie for impression ID");
+              if (getCookie(cookieName) === undefined || getCookie(cookieName) === "" || getCookie(cookieName) === null) {
+                  console.log("no cookie set --- setting now");
+                  var now = new Date();
+                  now.setTime(now.getTime() + expireInHours * 3600 * 1000);
+                  document.cookie = cookieName + "=" + cookieValue + ";path=" + path + ";expires=" + now.toUTCString();
+                  console.log("cookie is set");
+                  fireImpressionId()
+              } else {
+                  console.log("Cookie is still valid");
+              }
+          }
+
+
+      })();
+
+  }
+}
+
+
+</script>
+<style>
+  h3.att_lightbox_header {
+      font-size: 20pt !important;
+  }
+
+
+  .att_lightbox_subhheader {
+      font-size: 12pt !important;
+  }
+
+  .att_lightbox_subhheader {
+      margin-top: 0px !important;
+  }
+
+  a#att_lightbox_cta:hover {
+      background: #2861a4 !important;
+  }
+
+  .disclaimerPopup {
+      z-index: 9999 !important;
+      max-width: 30vw !important;
+      max-height: 70vh !important;
+      background-color: #fff !important;
+      top: 15vh !important;
+      left: 75vw !important;
+      margin: 0 35px !important;
+      justify-content: center !important;
+      align-items: center !important;
+      position: fixed !important;
+      font-family: FordAntenna, Ford Antenna, Arial, Helvetica, sans-serif !important;
+  }
+
+  .closeSpanX {
+      float: right !important;
+      cursor: pointer !important;
+      margin: 10px !important;
+      font-weight: 600 !important;
+  }
+
+  .disclaimerContent {
+      margin: 30px !important;
+  }
+
+  a#disclaimerLink {
+      text-decoration: none !important;
+  }
+
+
+
+
+  a.att_lightbox_button {
+      background-color: #102b4e;
+      border-color: #102b4e;
+      border-radius: 2rem;
+      box-shadow: 0 1rem 1rem 0 rgba(0, 0, 0, .1), 0 2rem 2rem 0 rgba(0, 0, 0, .1);
+      color: #fff;
+      display: inline-flex;
+      justify-content: center;
+      min-width: max-content;
+      padding: 12px 30px 11px;
+      text-align: center;
+      margin: 20px 10px 10px 10px !important;
+  }
+
+  a#att_lightbox_close {
+      display: block !important;
+  }
+
+  @media screen and (min-width:700px) and (max-width:1024px) {
+      .disclaimerPopup {
+          left: 0 !important;
+          max-width: 100vw !important;
+          top: 27.5vw !important;
+      }
+
+      .disclaimerContent {
+          margin: 20px !important
+      }
+
+      /* a#att_lightbox_cta {
+      margin: 10px 30px !important;
+    }
+*/
+      h3.att_lightbox_header {
+          font-size: 20pt !important;
+      }
+
+
+  }
+
+  @media screen and (max-width:600px) {
+      .disclaimerPopup {
+          max-width: 90vw !important;
+          max-height: 55vh !important;
+          top: 23vh !important;
+          left: 5vw !important;
+          margin: auto !important;
+          padding-bottom: 30vh !important;
+
+      }
+
+  }
+</style>

@@ -1,0 +1,37 @@
+<script>
+  var accordionOpen = false;
+  
+  function linktheAcc() {
+    let accList = document.querySelectorAll('.accordion-item');
+    accList.forEach((accordion) => {
+      accordion.onclick = function(event) {
+        event.preventDefault();
+        linkTrigger(accordion); 
+      };
+    });
+  }
+  
+  function linkTrigger(clickedAccordion) {
+    accordionOpen = true;
+    let accBtn = clickedAccordion.querySelector('a.accordion-trigger.accordion-trigger-inline.content-right');
+    if (accBtn) {
+      accBtn.click(); 
+    }
+  }
+  
+  
+  function fireImpressionId() {
+          window.targetCampaign = {
+      page: {
+        campaignName: 'tt:nwp:opt-2494:ab:psr:Click-Accordian:Challenger'
+   
+      }
+    }
+
+    _satellite.track('genericTestingImpressionIDWorkaround');
+      }
+  
+    linktheAcc();
+    fireImpressionId();
+  
+  </script>

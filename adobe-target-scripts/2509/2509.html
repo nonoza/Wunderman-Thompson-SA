@@ -1,0 +1,101 @@
+<script>
+function homeVideo() {
+    let playVideo = document.querySelectorAll('div#vjs_video_3');
+}
+</script>
+
+
+// Check if the window link is on a kuga page
+    //- if yes: 
+    // Fetch the video element;
+    // Clone the video
+// Check if the window link is on a home page.
+    //- if yes:
+    //look for the first element in a page
+    //- append the clone video to the home page.
+// Fetch the element class that toogle the video to play;
+// check the class isnactive.
+    //- if yes:
+    // toggle active
+
+
+    //KUGA PAGE STEP 1
+<script>
+console.log('kuga page ')
+
+// STEP 1: Check if the current page is the Kuga page
+if (window.location.href.indexOf('ford.co.uk/cars/new-kuga-phev') !== -1) {
+   // Fetch the video element
+   const originalVideo = document.querySelector('.heroVideo');
+    
+    // Clone the video element
+    const clonedVideo = originalVideo.cloneNode(true);
+    
+    // Save the cloned video using local storage
+    localStorage.setItem('clonedVideo', clonedVideo.outerHTML);
+}
+</script>
+  <!-- Include dash.js library -->
+
+
+<script>
+//HOME PAGE STEP 2
+
+console.log('new video homepage')
+
+ // Dynamically create a script element for dash.js
+ var dashScript = document.createElement('script');
+    dashScript.src = 'https://cdn.dashjs.org/latest/dash.all.min.js';
+
+    // Add the script to the document's head
+    document.head.appendChild(dashScript);
+
+  // Wait for the script to be loaded before executing the rest of the code
+  dashScript.onload = function () {
+// Step 2: Check if the window link is on a home page
+if (window.location.href.indexOf('ford.co.uk/') !== -1) {
+    
+    // Retrieve the video source URL from local storage
+    const videoSourceUrl = localStorage.getItem('videoSourceUrl');
+
+    // Check if the URL exists in local storage
+    if (videoSourceUrl) {
+        // Create a new video element using dash.js
+        const videoPlayer = dashjs.MediaPlayer().create();
+        videoPlayer.initialize(document.querySelector("#vjs_video_3"), videoSourceUrl, true);
+    } else {
+        console.error('Video source URL not found in local storage.');
+    }
+
+    // Look for the first element on the page
+    const firstElement = document.querySelector('.box-content .cq-dd-image');
+
+    // Check if the first element and video source URL exist
+    if (firstElement && videoSourceUrl) {
+        // Create a new video element
+        const videoElement = document.createElement('video');
+        videoElement.src = videoSourceUrl;
+
+        // Create a temporary element to clone the video element
+        const tempElement = document.createElement('div');
+        tempElement.appendChild(videoElement.cloneNode(true));
+
+        // Store the cloned video HTML in local storage
+        localStorage.setItem('clonedVideo', tempElement.innerHTML);
+
+        // Append the cloned video element to the home page
+        firstElement.appendChild(tempElement.firstChild);
+    }
+}
+  }
+
+</script>
+
+    
+
+
+
+
+
+    
+

@@ -1,0 +1,112 @@
+<script>
+  console.log("OT-2187 | Arrows to Encourage Scrolling | Challenger D ")
+//Create a variable that will wait for the element to be available.
+ let waitForBtnVariable = setInterval(()=>{
+    //Create a variable that holds the button.
+    let btnReserva = document.querySelectorAll('div[data-guxacc-applied-styles="richtext-cta-register"] > div');
+     // If the variable is available, clear the interval.
+    if(btnReserva !== null && btnReserva !== undefined){
+       //clear the interval
+       clearInterval(waitForBtnVariable);
+       // -- create a variable that will hold the arrow down element.
+       let arrowDown = `<div id="arrowAnim">
+  <div class="arrowSliding">
+    <div class="arrow"></div>
+  </div>
+  <div class="arrowSliding delay1">
+    <div class="arrow"></div>
+  </div>
+
+ 
+</div>`;
+
+        
+    //     arrowDown.alt = "arrow-icon"
+    //    // add the class List to the the arrow element.
+    //      arrowDown.classList.add("arrow-down");
+    //      arrowDown.classList.add('pulse');
+       // -- Create a variable that holds the parent Element
+       
+       // -- apend the arrowdown into a parent
+       let div= document.createElement('div');
+        div.innerHTML = arrowDown;
+        btnReserva[0].appendChild(div);
+        window.targetCampaign = {
+                page: {
+                campaignName: 'tt:nwp:opt-2187:ab:vhp:arrow-on-npp:var-D'
+            
+            }
+        }
+ 
+        _satellite.track('genericTestingImpressionIDWorkaround');
+        console.log('done firing -- first pass');
+    }
+     // On the winow scroll , the arrow must disappear
+    window.addEventListener("scroll",()=>{
+        console.log("scroll started...");
+        let arrowIcon = document.querySelectorAll('#arrowAnim');
+        arrowIcon[0].style.display = "none";
+    })
+ })
+ </script>
+ <style>
+/* #arrowAnim {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.arrowSliding {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+   
+    -webkit-animation: bounce 3s infinite;
+  animation: bounce 3s both infinite;
+}
+.arrow {
+  width: 10px;
+  height: 10px;
+  border: 2px solid;
+  border-color: white transparent transparent white;
+  transform: rotate(-136deg);
+  position: relative;
+  top: 12px;
+}
+.delay1 {
+  -webkit-animation-delay: 1s; 
+    animation-delay: 14s;
+}
+
+
+
+ 
+@-webkit-keyframes bounce {
+  0% {-webkit-transform: translateY(0); opacity: 0;}
+  60% { opacity: 1;}
+  100% {-webkit-transform: translateY(60px); opacity: 0}
+}
+ 
+@-moz-keyframes bounce {
+  0% {-webkit-transform: translateY(0); opacity: 0;}
+  60% { opacity: 1;}
+  100% {-webkit-transform: translateY(60px); opacity: 0}
+}
+ 
+@-o-keyframes bounce {
+  0% {-webkit-transform: translateY(0); opacity: 0;}
+  60% { opacity: 1;}
+  100% {-webkit-transform: translateY(60px); opacity: 0}
+}
+@keyframes bounce {
+  0% {-webkit-transform: translateY(0); opacity: 0;}
+  60% { opacity: 1;}
+  100% {-webkit-transform: translateY(60px); opacity: 0}
+}
+.nextgen-primary-cta{
+    margin: -25px auto;
+}
+ </style>
