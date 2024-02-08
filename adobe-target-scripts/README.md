@@ -8,7 +8,7 @@ This repository contains resources and scripts to enable A/B testing and impleme
 
 ## Clients
 The examination was conducted using Ford Motor Company as the subject, and it encompassed evaluations across all markets, spanning various countries.
-![https://www.ford.co.uk/](https://www.ford.co.uk/)
+![Client Link:](https://www.ford.co.uk/)
 
 ## Features
 
