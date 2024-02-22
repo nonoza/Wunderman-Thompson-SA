@@ -25,8 +25,8 @@
 
 ### Links
 
-- Solution URL: [Link to Soulution](https://github.com/nonoza/Wunderman-Thompson-SA/tree/main/cadbury-easter-landing-page)
-- Live Site URL: [Link to Live](https://nonoza.github.io/Wunderman-Thompson-SA/cadbury-easter-landing-page/)
+- Solution URL: [Link to Soulution](https://nonoza.github.io/vmlsa/tree/main/cadbury-easter-landing-page)
+- Live Site URL: [Link to Live](https://nonoza.github.io/vmlsa/cadbury-easter-landing-page/)
 
 ## My process
 - Started with the HTML to build a structure of the page.
